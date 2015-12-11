@@ -7,6 +7,7 @@ exports.handler = function (event, context) {
         compress = require('./compress'),
         kml = require('./kml'),
         upload = require('./upload'),
+        buildNumber = require('./buildNumber'),
         map;
 
     // Let's go
@@ -34,6 +35,7 @@ exports.handler = function (event, context) {
         })
         .then(function (url) {
             map.csv = url;
+            map.buildNumber = buildNumber;
             context.succeed({'data': map});
         })
         .catch(function (err) {

@@ -65,6 +65,7 @@
             }, {
                 'succeed': function (data) {
                     expect(data.data.username).to.equal('christianhaller');
+                    expect(data.data.buildNumber).to.equal(0);
                     done();
                 },
                 fail: function (err) {
