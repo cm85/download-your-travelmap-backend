@@ -35,7 +35,7 @@ exports.handler = function (event, context) {
         })
         .then(function (url) {
             map.csv = url;
-            map.buildNumber = buildNumber;
+            map.buildNumber = buildNumber.buildNumber;
             context.succeed({'data': map});
         })
         .catch(function (err) {
