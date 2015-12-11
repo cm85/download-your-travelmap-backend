@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.2.22",
+    "geojson": "^0.2.1",
+    "gzip-buffer": "0.0.2",
+    "json2csv": "^3.0.1",
+    "promise": "^7.0.4",
+    "sanitize-filename": "^1.5.3",
+    "tokml": "^0.3.0",
+    "xml2js": "^0.4.15"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.9.0",
+    "gulp-awslambda": "^0.2.3",
+    "gulp-jshint": "^2.0.0",
+    "gulp-zip": "^3.0.2",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.1.0",
+    "mocha": "^2.3.4",
+    "promise": "^7.0.4"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "",
+  "license": "ISC"
+}
