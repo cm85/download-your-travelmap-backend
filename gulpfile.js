@@ -7,6 +7,7 @@
         jshint = require('gulp-jshint'),
         del = require('del'),
         config = require('./backend/config.json'),
+
         deploy = function (config) {
             return gulp.src('./backend/**/*')
                 .pipe(zip('archive.zip'))
