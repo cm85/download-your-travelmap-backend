@@ -23,6 +23,18 @@
         });
     });
 
+    describe('https', function () {
+        it('should work', function (done) {
+            this.timeout(9000);
+            requestApp('https://www.tripadvisor.it/members/micampCagliari_Italy').then(function (data) {
+                expect(data.username).to.equal('micampCagliari_Italy');
+                done();
+            }).catch(function (e) {
+                console.log(e);
+            });
+        });
+    });
+
     describe('stage okay', function () {
         it('gateway should send json', function (done) {
             this.timeout(15000);
