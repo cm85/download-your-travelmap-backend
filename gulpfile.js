@@ -23,7 +23,10 @@
     });
 
     gulp.task('deploy_prod',['copy'], function () {
+        var buildNumber = require('./backend/buildNumber');
+        console.log('buildNumber: '+buildNumber.buildNumber);
         console.log('deploy prod 🚚🚚🚚🚚🚚🚚🚚🚚🚚');
+
         config = config.aws.prod;
         deploy(config);
 
