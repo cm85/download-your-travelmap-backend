@@ -16,5 +16,5 @@ install:
 
 after_success:
   - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for the master branch. Current branch is $TRAVIS_BRANCH"; exit 0; fi
-  - echo $TRAVIS_BUILD_NUMBER > backend/buildNumber.json
+  - echo {\"buildNumber\":\"$TRAVIS_BUILD_NUMBER\"} > backend/buildNumber.json
   - gulp deploy_prod
