@@ -23,6 +23,7 @@
     });
 
     gulp.task('deploy_prod',['copy'], function () {
+        console.log('deploy prod 🚚🚚🚚🚚🚚🚚🚚🚚🚚');
         config = config.aws.prod;
         deploy(config);
 
