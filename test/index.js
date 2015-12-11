@@ -35,7 +35,7 @@
         });
     });
 
-   /* describe('stage okay', function () {
+    describe('stage okay', function () {
         it('gateway should send json', function (done) {
             this.timeout(15000);
             https
@@ -55,7 +55,7 @@
                     });
                 });
         });
-    });*/
+    });
 
     describe('app', function () {
         it('Be OK https://en.wikipedia.org/wiki/Be_OK_%28Ingrid_Michaelson_song%29', function (done) {
