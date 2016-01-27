@@ -10,7 +10,7 @@
         AWS.config.region = config.aws.prod.s3.region;
         return new Promise(function (fulfill, reject) {
             var params = {
-                    'ACL': acl || 'public-read',
+                    'ACL': acl||'public-read',
                     'Bucket': config.aws.prod.s3.bucketName,
                     'Key': path,
                     'ContentEncoding': contentEncoding,

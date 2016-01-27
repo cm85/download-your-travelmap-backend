@@ -9,5 +9,3 @@
         console.log(err);
     }});
 }(require));
-
-

@@ -19,7 +19,7 @@ exports.handler = function (event, context) {
             context.succeed({'data': data});
 
         })
-        .catch(function (err) {
+        .catch(function () {
             request(url)
                 .then(function (data) {
                     cache.write('json/' + encodeURIComponent(url) + '.json', data)
@@ -45,7 +45,7 @@ exports.handler = function (event, context) {
                                     map.csv = url;
                                     map.buildNumber = buildNumber.buildNumber;
                                     context.succeed({'data': map});
-                                })
+                                });
 
                         });
                 }).catch(function (err) {
