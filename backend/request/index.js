@@ -2,6 +2,9 @@
 var request = require('request'),
     Promise = require('promise'),
     parse = require('../parse'),
+    config = require('../config.json'),
+
+
 
 // get host and path
     getRequestOptions = function (str) {
@@ -34,6 +37,7 @@ var request = require('request'),
 
 module.exports = function (profileUrl) {
     'use strict';
+    var s3;
     return new Promise(function (fullfil, reject) {
         var mapCallback = function (response) {
 
@@ -61,6 +65,10 @@ module.exports = function (profileUrl) {
                 }
 
             };
+
+
+
+
         request(getRequestOptions(profileUrl), function (error, response) {
             if (error) {
                 reject(new Error(error));
@@ -79,6 +87,5 @@ module.exports = function (profileUrl) {
                 profileCallback(response.body);
             }
         });
-
     });
 };

@@ -4,43 +4,54 @@ exports.handler = function (event, context) {
     var request = require('./request'),
         Promise = require('promise'),
         csv = require('./csv'),
-        compress = require('./compress'),
+        cache = require('./cache'),
+        zip = require('./gzip'),
         kml = require('./kml'),
         upload = require('./upload'),
         buildNumber = require('./buildNumber'),
-        map;
+        map,
+        url = decodeURIComponent(event.url).trim();
 
-    // Let's go
-    request(decodeURIComponent(event.url).trim())
+
+    cache.read('json/' + encodeURIComponent(url) + '.json')
         .then(function (data) {
-            var kmlData = kml(data);
-            map = data;
-            map.date =  new Date().toISOString();
-            return new Promise.resolve(kmlData);
-        })
-        .then(compress)
-        .then(function (kmlData) {
-            return upload('kml', map.username + '.kml', kmlData, 'application/vnd.google-earth.kml+xml', 'gzip');
-        })
-        .then(function (url) {
-            map.kml = url;
-            return new Promise.resolve(map);
-        })
-        .then(csv)
-        .then(compress)
-        .then(function (csvData) {
-            //filename, content, contentType, contentEncoding
-            return upload('csv', map.username + '.csv', csvData, 'text/csv', 'gzip');
+            console.log('found');
+            context.succeed({'data': data});
 
-        })
-        .then(function (url) {
-            map.csv = url;
-            map.buildNumber = buildNumber.buildNumber;
-            context.succeed({'data': map});
         })
         .catch(function (err) {
-            //console.log(err);
-            context.fail(err);
+            request(url)
+                .then(function (data) {
+                    cache.write('json/' + encodeURIComponent(url) + '.json', data)
+                        .then(function () {
+                            var kmlData = kml(data);
+                            map = data;
+                            map.date = new Date().toISOString();
 
+                            zip.compress(kmlData)
+                                .then(function (kmlData) {
+                                    return upload('kml/' + encodeURIComponent(map.username) + '.kml', kmlData, 'application/vnd.google-earth.kml+xml', 'gzip');
+                                })
+                                .then(function (url) {
+                                    map.kml = url;
+                                    return new Promise.resolve(map);
+                                })
+                                .then(csv)
+                                .then(zip.compress)
+                                .then(function (csvData) {
+                                    return upload('csv/' + encodeURIComponent(map.username) + '.csv', csvData, 'text/csv', 'gzip');
+                                })
+                                .then(function (url) {
+                                    map.csv = url;
+                                    map.buildNumber = buildNumber.buildNumber;
+                                    context.succeed({'data': map});
+                                })
+
+                        });
+                }).catch(function (err) {
+                    console.log(err);
+                    context.fail(err);
+
+                });
         });
 };

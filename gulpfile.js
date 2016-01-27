@@ -30,7 +30,6 @@
         config = config.aws.prod;
         deploy(config);
 
-
     });
 
     gulp.task('deploy_stage',['copy'], function () {

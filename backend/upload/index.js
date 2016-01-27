@@ -2,24 +2,17 @@
 (function () {
     'use strict';
     var AWS = require('aws-sdk'),
-        sanitize = require('sanitize-filename'),
         Promise = require('promise'),
         config = require('../config.json');
 
-    module.exports = function (dir, filename, content, contentType, contentEncoding) {
-
-
-
-        filename = dir + '/' + sanitize(filename);
-
-
+    module.exports = function (path, content, contentType, contentEncoding, acl) {
 
         AWS.config.region = config.aws.prod.s3.region;
         return new Promise(function (fulfill, reject) {
             var params = {
-                    'ACL': 'public-read',
+                    'ACL': acl || 'public-read',
                     'Bucket': config.aws.prod.s3.bucketName,
-                    'Key': filename,
+                    'Key': path,
                     'ContentEncoding': contentEncoding,
                     'ContentType': contentType,
                     'Body': content
@@ -30,6 +23,7 @@
                 if (err) {
                     reject(err);
                 } else {
+                    console.log('upload '+path);
                     fulfill(data.Location);
                 }
             });
