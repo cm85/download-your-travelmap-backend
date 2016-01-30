@@ -16,7 +16,7 @@ exports.handler = function (event, context) {
 
     cache.read('json/' + encodeURIComponent(url) + '.json')
         .then(function (map) {
-                succeed(context.succeed,{'data': map,'cached':true});
+            succeed(context.succeed, {'data': map, 'cached': true});
         })
         .catch(function () {
             request(url)
@@ -43,7 +43,7 @@ exports.handler = function (event, context) {
                                 .then(function (url) {
                                     map.csv = url;
                                     map.buildNumber = buildNumber.buildNumber;
-                                    succeed(context.succeed,{'data': map,'br':'br'});
+                                    succeed(context.succeed, {'data': map, 'cached': false});
                                 });
 
                         });
