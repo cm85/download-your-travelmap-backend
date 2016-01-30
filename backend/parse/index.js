@@ -1,4 +1,6 @@
 /*global module, require */
+/*jshint maxstatements: 20, maxlen:200 */
+/* TODO: tidy up this file */
 var url = require('url'),
     iso = require('../iso'),
     getStringBetween = function (str, start, end) {

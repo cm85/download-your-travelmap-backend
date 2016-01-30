@@ -1,4 +1,5 @@
 /*global require, module */
+/*jshint maxparams:5 */
 (function () {
     'use strict';
     var AWS = require('aws-sdk'),

@@ -8,24 +8,23 @@ exports.handler = function (event, context) {
         zip = require('./gzip'),
         kml = require('./kml'),
         upload = require('./upload'),
+        succeed = require('./succeed'),
         buildNumber = require('./buildNumber'),
-        map,
+
         url = decodeURIComponent(event.url).trim();
 
 
     cache.read('json/' + encodeURIComponent(url) + '.json')
-        .then(function (data) {
-            console.log('found');
-            context.succeed({'data': data});
-
+        .then(function (map) {
+                succeed(context.succeed,{'data': map,'cached':true});
         })
         .catch(function () {
             request(url)
                 .then(function (data) {
                     cache.write('json/' + encodeURIComponent(url) + '.json', data)
                         .then(function () {
-                            var kmlData = kml(data);
-                            map = data;
+                            var kmlData = kml(data),
+                                map = data;
                             map.date = new Date().toISOString();
 
                             zip.compress(kmlData)
@@ -44,7 +43,7 @@ exports.handler = function (event, context) {
                                 .then(function (url) {
                                     map.csv = url;
                                     map.buildNumber = buildNumber.buildNumber;
-                                    context.succeed({'data': map});
+                                    succeed(context.succeed,{'data': map,'br':'br'});
                                 });
 
                         });
