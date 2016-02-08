@@ -21,36 +21,38 @@ exports.handler = function (event, context) {
         .catch(function () {
             request(url)
                 .then(function (data) {
-                    cache.write('json/' + encodeURIComponent(url) + '.json', data)
-                        .then(function () {
-                            var kmlData = kml(data),
-                                map = data;
-                            map.date = new Date().toISOString();
 
-                            zip.compress(kmlData)
-                                .then(function (kmlData) {
-                                    return upload('kml/' + encodeURIComponent(map.username) + '.kml', kmlData, 'application/vnd.google-earth.kml+xml', 'gzip');
-                                })
-                                .then(function (url) {
-                                    map.kml = url;
-                                    return new Promise.resolve(map);
-                                })
-                                .then(csv)
-                                .then(zip.compress)
-                                .then(function (csvData) {
-                                    return upload('csv/' + encodeURIComponent(map.username) + '.csv', csvData, 'text/csv', 'gzip');
-                                })
-                                .then(function (url) {
-                                    map.csv = url;
-                                    map.buildNumber = buildNumber.buildNumber;
-                                    succeed(context.succeed, {'data': map, 'cached': false});
-                                });
+                    var kmlData = kml(data),
+                        map = data;
+                    map.date = new Date().toISOString();
 
+                    zip.compress(kmlData)
+                        .then(function (kmlData) {
+                            return upload('kml/' + encodeURIComponent(map.username) + '.kml', kmlData, 'application/vnd.google-earth.kml+xml', 'gzip');
+                        })
+                        .then(function (kmlUrl) {
+                            map.kml = kmlUrl;
+                            return new Promise.resolve(map);
+                        })
+                        .then(csv)
+                        .then(zip.compress)
+                        .then(function (csvData) {
+                            return upload('csv/' + encodeURIComponent(map.username) + '.csv', csvData, 'text/csv', 'gzip');
+                        })
+                        .then(function (csvUrl) {
+                            map.csv = csvUrl;
+                            map.buildNumber = buildNumber.buildNumber;
+                            cache.write('json/' + encodeURIComponent(url) + '.json', data).then(function () {
+                                succeed(context.succeed, {'data': map, 'cached': false});
+                            });
+                                    
                         });
-                }).catch(function (err) {
-                    console.log(err);
-                    context.fail(err);
 
                 });
+        }).catch(function (err) {
+            console.log(err);
+            context.fail(err);
+
         });
+
 };
