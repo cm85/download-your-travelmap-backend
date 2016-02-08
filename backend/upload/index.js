@@ -7,8 +7,9 @@
         config = require('../config.json');
 
     module.exports = function (path, content, contentType, contentEncoding, acl) {
-
+        /* TODO prod is hardcoded */
         AWS.config.region = config.aws.prod.s3.region;
+
         return new Promise(function (fulfill, reject) {
             var params = {
                     'ACL': acl||'public-read',

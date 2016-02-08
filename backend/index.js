@@ -45,7 +45,7 @@ exports.handler = function (event, context) {
                             cache.write('json/' + encodeURIComponent(url) + '.json', data).then(function () {
                                 succeed(context.succeed, {'data': map, 'cached': false});
                             });
-                                    
+
                         });
 
                 });
