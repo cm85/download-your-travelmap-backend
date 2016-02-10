@@ -7,7 +7,7 @@
         https = require('https'),
         xml2js = require('xml2js'),
         parser = new xml2js.Parser(),
-        config = require('../backend/config'),
+        config = require('../backend/config')(),
         expect = require('expect.js/'),
         kml = require('../backend/kml');
 
