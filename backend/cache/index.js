@@ -3,17 +3,17 @@ var Promise = require('promise'),
     AWS = require('aws-sdk'),
     gzip = require('../gzip'),
     upload = require('../upload'),
-    config = require('../config.json');
+    config = require('../config')();
 
 module.exports = {
     'read': function (path) {
         'use strict';
         var s3;
-        AWS.config.region = config.aws.prod.s3.region;
+        AWS.config.region = config.aws.s3.region;
         s3 = new AWS.S3();
         return new Promise(function (fulfill, reject) {
             s3.getObject({
-                'Bucket': config.aws.prod.s3.bucketName,
+                'Bucket': config.aws.s3.bucketName,
                 'Key': path
             }, function (err, data) {
                 if (err) {

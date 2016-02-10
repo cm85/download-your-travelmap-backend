@@ -7,7 +7,7 @@
         https = require('https'),
         xml2js = require('xml2js'),
         parser = new xml2js.Parser(),
-        config = require('../backend/config.json'),
+        config = require('../backend/config'),
         expect = require('expect.js/'),
         kml = require('../backend/kml');
 
@@ -39,7 +39,7 @@
         it('gateway should send json', function (done) {
             this.timeout(15000);
             https
-                .get(config.aws.stage.path + '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2FCarolinaCoopers', function (res) {
+                .get(config.aws.path + '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2FCarolinaCoopers', function (res) {
                     var body = '';
                     expect(res.statusCode).to.equal(200);
 

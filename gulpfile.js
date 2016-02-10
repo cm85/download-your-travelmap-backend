@@ -6,12 +6,13 @@
         zip = require('gulp-zip'),
         jshint = require('gulp-jshint'),
         del = require('del'),
-        config = require('./backend/config.json'),
+        config = require('./config.prod.json'),
 
-        deploy = function (config) {
-            return gulp.src('./backend/**/*')
+        deploy = function (env) {
+            return gulp.src(['./backend/**/*','config.' + env + '.json'])
                 .pipe(zip('archive.zip'))
-                .pipe(lambda(config.lambda, config));
+                .pipe(gulp.dest('.'));
+              //  .pipe(lambda(config.lambda, config));
         };
     gulp.task('copy',['clean'],function(){
         return gulp.src('./node_modules/**/*',{'base':'./node_modules'})
@@ -26,15 +27,12 @@
         var buildNumber = require('./backend/buildNumber');
         console.log('buildNumber: '+buildNumber.buildNumber);
         console.log('deploy prod 🚚🚚🚚🚚🚚🚚🚚🚚🚚');
-
-        config = config.aws.prod;
-        deploy(config);
+        deploy('prod');
 
     });
 
     gulp.task('deploy_stage',['copy'], function () {
-        config = config.aws.stage;
-        deploy(config);
+        deploy('stage');
     });
 
 
