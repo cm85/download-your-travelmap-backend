@@ -8,7 +8,7 @@
         del = require('del'),
 
         deploy = function (env) {
-            var config = require('./config.' + env + '.json');
+            var config = require('./backend/config.' + env + '.json');
             return gulp.src(['./backend/**/*'])
                 .pipe(zip('archive.zip'))
                 //.pipe(gulp.dest('.'));
@@ -38,7 +38,7 @@
 
 
     gulp.task('jshint', function () {
-        return gulp.src(['./gulpfile.js','./test/*.js','./backend/**/*','!./backend/node_modules/**'])
+        return gulp.src(['./gulpfile.js','./test/*.js','./backend/**/*.js','!./backend/node_modules/**'])
             .pipe(jshint())
             .pipe(jshint.reporter('jshint-stylish'));
     });
