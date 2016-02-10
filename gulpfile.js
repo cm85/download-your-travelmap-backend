@@ -8,8 +8,8 @@
         del = require('del'),
 
         deploy = function (env) {
-            var config = require('./backend/config')();
-            return gulp.src(['./backend/**/*','config.' + env + '.json'])
+            var config = require('./config.' + env + '.json');
+            return gulp.src(['./backend/**/*'])
                 .pipe(zip('archive.zip'))
                 //.pipe(gulp.dest('.'));
                 .pipe(lambda(config.aws.lambda, config));

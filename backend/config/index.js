@@ -1,16 +1,16 @@
-/*global module, require */
+/*global module, require, process */
 module.exports = function () {
     'use strict';
-    try {
-        return require('../config.stage.json');
+    var awsLambdaFunctionName = process.env.AWS_LAMBDA_FUNCTION_NAME;
+    if (typeof awsLambdaFunctionName === 'undefined') {
+        return require('../../config.local.json');
     }
-    catch (e) {
-        try {
-            return require('../config.prod.json');
-        }
-        catch(exception){
-            return require('../../config.local.json');
-        }
+    if (awsLambdaFunctionName.indexOf('stage') !== -1) {
+        console.log('stage');
+        require('../config.stage.json');
+    }
+    else {
+        return require('../config.prod.json');
     }
 };
 
