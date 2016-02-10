@@ -6,13 +6,13 @@
         zip = require('gulp-zip'),
         jshint = require('gulp-jshint'),
         del = require('del'),
-        config = require('./config.prod.json'),
 
         deploy = function (env) {
+            var config = require('./backend/config')();
             return gulp.src(['./backend/**/*','config.' + env + '.json'])
                 .pipe(zip('archive.zip'))
-                .pipe(gulp.dest('.'));
-              //  .pipe(lambda(config.lambda, config));
+                //.pipe(gulp.dest('.'));
+                .pipe(lambda(config.aws.lambda, config));
         };
     gulp.task('copy',['clean'],function(){
         return gulp.src('./node_modules/**/*',{'base':'./node_modules'})

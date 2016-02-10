@@ -10,5 +10,6 @@
         "bucketName": "download-your-travelmap.christianhaller.com",
         "region": "us-west-2"
       }
-    }
+    },
+  "env":"env :prod 🦁 "
 }

@@ -8,12 +8,9 @@ module.exports = function () {
         try {
             return require('../config.prod.json');
         }
-        catch(e){
-            return require('../../config.stage.json');
+        catch(exception){
+            return require('../../config.local.json');
         }
-
-
-
     }
 };
 

@@ -13,12 +13,12 @@ exports.handler = function (event, context) {
 
         url = decodeURIComponent(event.url).trim();
 
-
     cache.read('json/' + encodeURIComponent(url) + '.json')
         .then(function (map) {
             succeed(context.succeed, {'data': map, 'cached': true});
         })
-        .catch(function () {
+        .catch(function (e) {
+            console.log(e);
             request(url)
                 .then(function (data) {
 
@@ -28,10 +28,12 @@ exports.handler = function (event, context) {
 
                     zip.compress(kmlData)
                         .then(function (kmlData) {
+
                             return upload('kml/' + encodeURIComponent(map.username) + '.kml', kmlData, 'application/vnd.google-earth.kml+xml', 'gzip');
                         })
                         .then(function (kmlUrl) {
                             map.kml = kmlUrl;
+
                             return new Promise.resolve(map);
                         })
                         .then(csv)
@@ -40,6 +42,7 @@ exports.handler = function (event, context) {
                             return upload('csv/' + encodeURIComponent(map.username) + '.csv', csvData, 'text/csv', 'gzip');
                         })
                         .then(function (csvUrl) {
+
                             map.csv = csvUrl;
                             map.buildNumber = buildNumber.buildNumber;
                             cache.write('json/' + encodeURIComponent(url) + '.json', data).then(function () {
