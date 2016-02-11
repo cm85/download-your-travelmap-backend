@@ -17,8 +17,7 @@ exports.handler = function (event, context) {
         .then(function (map) {
             succeed(context.succeed, {'data': map, 'cached': true});
         })
-        .catch(function (e) {
-            console.log(e);
+        .catch(function () {
             request(url)
                 .then(function (data) {
 
@@ -51,11 +50,10 @@ exports.handler = function (event, context) {
 
                         });
 
-                });
-        }).catch(function (err) {
-            console.log(err);
-            context.fail(err);
+                }).catch(function (err) {
+                    context.fail(err);
 
+                });
         });
 
 };

@@ -23,6 +23,21 @@
         });
     });
 
+    describe('no map url', function () {
+        it('301', function (done) {
+            this.timeout(9000);
+            requestApp('https://www.tripadvisor.com.br/Saves?v=list#39842494').then(function () {
+
+            }).catch(function (err) {
+                expect(err).to.be.an(Error);
+                done();
+
+            });
+        });
+    });
+
+
+
     describe('https', function () {
         it('should work', function (done) {
             this.timeout(9000);
@@ -59,7 +74,7 @@
 
     describe('app', function () {
         it('Be OK https://en.wikipedia.org/wiki/Be_OK_%28Ingrid_Michaelson_song%29', function (done) {
-            this.timeout(12000);
+            this.timeout(7000);
             app.handler({
                 'url': decodeURIComponent('http://www.tripadvisor.com/members/christianhaller')
             }, {
@@ -70,6 +85,21 @@
                 },
                 fail: function (err) {
                     done(err);
+                }
+            });
+        });
+
+
+        it('error', function (done) {
+            app.handler({
+                'url': decodeURIComponent('https://www.tripadvisor.com.br/Saves?v=list#39842494')
+            }, {
+                'succeed': function () {
+
+                },
+                fail: function (err) {
+                    expect(err).to.be.an(Error);
+                    done();
                 }
             });
         });
