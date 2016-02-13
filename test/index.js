@@ -172,6 +172,16 @@
                 });
         });
 
+        it('very bad url', function (done) {
+            this.timeout(4000);
+            requestApp('123')
+                .catch(function (err) {
+                    //console.log(err);
+                    expect(err).to.be.an(Error);
+                    done();
+                });
+        });
+
         it('dns error', function (done) {
             this.timeout(4000);
             requestApp('http://www.google.commmmm')
