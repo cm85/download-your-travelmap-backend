@@ -139,8 +139,10 @@
 
         it('map request', function (done) {
             this.timeout(6000);
-            requestApp(' http://www.tripadvisor.com/TravelMap-a_uid.BAE86B9F2C0155C5003524F652DD4719').then(function (data) {
+            requestApp('http://www.tripadvisor.com/TravelMap-a_uid.BAE86B9F2C0155C5003524F652DD4719').then(function (data) {
                 expect(data.username).to.equal('surefire56');
+                // be sure it's https
+                expect(data.avatar).to.contain('https://media-cdn.tripadvisor.com/media');
                 done();
             }).catch(function (err) {
                 console.log(err);
