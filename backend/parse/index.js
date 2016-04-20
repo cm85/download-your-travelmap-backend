@@ -24,7 +24,10 @@ module.exports = {
     },
     getAvatar: function (html) {
         'use strict';
-        return getStringBetween(html, 'class="avatarUrl" src="', '"');
+        var avatar = getStringBetween(html, 'class="avatarUrl" src="', '"');
+        avatar = avatar.replace('http://','https://');
+        return avatar;
+
     },
     getLanguage: function (html) {
         'use strict';
