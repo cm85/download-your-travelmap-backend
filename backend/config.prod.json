@@ -1,15 +1,15 @@
 {
-  "aws": {
-      "path": "https://smd2e8ej75.execute-api.us-east-1.amazonaws.com/prod",
-      "lambda": {
-        "FunctionName": "travelmap",
-        "Role": "arn:aws:iam::806424220409:role/invoke",
-        "Timeout": 60
-      },
-      "s3": {
-        "bucketName": "download-your-travelmap.christianhaller.com",
-        "region": "us-west-2"
-      }
+    "aws": {
+        "path": "https://smd2e8ej75.execute-api.us-east-1.amazonaws.com/prod",
+        "lambda": {
+            "FunctionName": "travelmap",
+            "Role": "arn:aws:iam::806424220409:role/invoke",
+            "Timeout": 60
+        },
+        "s3": {
+            "bucketName": "download-your-travelmap.christianhaller.com",
+            "region": "us-west-2"
+        }
     },
-  "env":"prod 🦁"
+    "env": "prod 🦁"
 }

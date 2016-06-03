@@ -25,7 +25,7 @@ module.exports = {
     getAvatar: function (html) {
         'use strict';
         var avatar = getStringBetween(html, 'class="avatarUrl" src="', '"');
-        avatar = avatar.replace('http://','https://');
+        avatar = avatar.replace('http://', 'https://');
         return avatar;
 
     },

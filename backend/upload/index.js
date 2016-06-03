@@ -12,7 +12,7 @@
         return new Promise(function (fulfill, reject) {
 
             var params = {
-                    'ACL': acl||'public-read',
+                    'ACL': acl || 'public-read',
                     'Bucket': config.aws.s3.bucketName,
                     'Key': path,
                     'ContentEncoding': contentEncoding,
@@ -27,7 +27,7 @@
                     console.log(err);
                     reject(err);
                 } else {
-                    console.log('upload '+path);
+                    console.log('upload ' + path);
                     fulfill(data.Location);
                 }
             });

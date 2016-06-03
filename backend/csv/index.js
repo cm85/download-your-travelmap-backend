@@ -1,7 +1,7 @@
 /*global module, require, console */
 var json2csv = require('json2csv'),
     Promise = require('promise'),
-    fields = ['lat', 'lon', 'name', 'been'];
+    fields = ['lat', 'lon', 'name', 'country', 'city','iso', 'been'];
 
 module.exports = function (data) {
     'use strict';

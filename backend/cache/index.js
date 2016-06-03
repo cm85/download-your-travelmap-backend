@@ -21,14 +21,14 @@ module.exports = {
                 }
                 else {
                     // older than five minutes
-                    if((Date.now() - Date.parse(data.LastModified)) > 60 * 1000 * 5){
+                    if ((Date.now() - Date.parse(data.LastModified)) > 60 * 1000 * 5) {
                         reject('cache outdated');
                     }
                     gzip.uncompress(data.Body)
                         .then(function (data) {
                             var map = JSON.parse(data.toString());
                             fulfill(map);
-                    }).catch(reject);
+                        }).catch(reject);
                 }
             });
         });
@@ -37,12 +37,12 @@ module.exports = {
         'use strict';
         return new Promise(function (fulfill, reject) {
             gzip.compress(JSON.stringify(data))
-                .then(function(gzipped){
-                upload(path, gzipped, 'application/json', 'gzip')
-                    .then(function(){
-                        fulfill(data);
-                    });
-            }).catch(reject);
+                .then(function (gzipped) {
+                    upload(path, gzipped, 'application/json', 'gzip')
+                        .then(function () {
+                            fulfill(data);
+                        });
+                }).catch(reject);
         });
     }
 };

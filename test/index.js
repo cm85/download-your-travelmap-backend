@@ -6,6 +6,7 @@
         requestApp = require('../backend/request'),
         https = require('https'),
         xml2js = require('xml2js'),
+        csv = require('../backend/csv'),
         parser = new xml2js.Parser(),
         config = require('../backend/config')(),
         expect = require('expect.js/'),
@@ -102,6 +103,30 @@
                     done();
                 }
             });
+        });
+
+        it('csv', function (done) {
+            var input = {
+                    'username': 'robiwan',
+                    'places': [
+                        {
+                            city: 'Davos',
+                            country: 'Switzerland',
+                            iso: 'CH',
+                            lat: 46.794476,
+                            'flags': ['been'],
+                            lng: 9.823285,
+                            name: 'Davos, Switzerland'
+                        }
+                    ]
+                };
+                csv(input).then(function(data){
+                    expect(data).to.equal('"lat","lon","name","country","city","iso","been"\n46.794476,9.823285,"Davos, Switzerland","Switzerland","Davos","CH","been"');
+                    done();
+                }).catch(function (e) {
+                    console.log(e);
+                });
+
         });
 
         it('kml', function (done) {
