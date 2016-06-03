@@ -135,7 +135,7 @@
                     'places': [
                         {
                             city: 'Davos',
-                            county: 'Switzerland',
+                            country: 'Switzerland',
                             iso: 'CH',
                             lat: 46.794476,
                             lng: 9.823285,

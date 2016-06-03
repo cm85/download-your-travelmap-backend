@@ -61,7 +61,7 @@ module.exports = {
                 isoCode = iso.get(countryName);
                 place = {
                     city: cityName,
-                    county: countryName,
+                    country: countryName,
                     iso: isoCode,
                     flags: taPlace.flags,
                     lat: taPlace.lat,
