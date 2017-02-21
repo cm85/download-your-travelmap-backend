@@ -4,7 +4,8 @@
         "lambda": {
             "FunctionName": "travelmap",
             "Role": "arn:aws:iam::806424220409:role/invoke",
-            "Timeout": 60
+            "Timeout": 60,
+            "Runtime":"nodejs4.3"
         },
         "s3": {
             "bucketName": "download-your-travelmap.christianhaller.com",
