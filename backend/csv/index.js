@@ -1,27 +1,18 @@
-/*global module, require, console */
-var json2csv = require('json2csv'),
-    Promise = require('promise'),
-    fields = ['lat', 'lon', 'name', 'country', 'city','iso', 'been'];
+const promisify = require('util.promisify');
+const json2csv = promisify(require('json2csv'));
 
-module.exports = function (data) {
-    'use strict';
-    return new Promise(function (fulfill, reject) {
-        var map = [];
-        data.places.forEach(function (item) {
-            item.been = item.flags.join(',');
-            item.lon = item.lng;
-            map.push(item);
-        });
+const fields = ['lat', 'lon', 'name', 'country', 'city', 'iso', 'been'];
 
-        json2csv({data: map, fields: fields}, function (err, csv) {
-            if (err) {
-                console.log('err');
-                reject(err);
-            } else {
-                fulfill(csv);
-            }
-        });
-    });
+module.exports = (data) => {
+  const map = data.places.map((item) => {
+    item.been = item.flags.join(',');
+    item.lon = item.lng;
+    return item;
+  });
+
+  return json2csv({
+    data: map,
+    fields,
+  });
 };
-
 

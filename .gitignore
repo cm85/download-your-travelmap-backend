@@ -1,2 +1,4 @@
 node_modules
 .idea
+lambda.zip
+infrastructure/.terraform

@@ -3,30 +3,24 @@
   "version": "1.0.2",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "aws-sdk": "^2.3.14",
-    "del": "^2.2.0",
-    "expect.js": "^0.3.1",
-    "geojson": "^0.4.1",
-    "gulp": "^3.9.1",
-    "gulp-awslambda": "^0.4.0",
-    "gulp-jshint": "^2.0.1",
-    "gulp-zip": "^4.0.0",
-    "gzip-buffer": "0.0.2",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0",
-    "json2csv": "^3.4.2",
-    "mocha": "^3.2.0",
-    "promise": "^7.1.1",
-    "request": "^2.72.0",
-    "sanitize-filename": "^1.6.0",
+  "dependencies": {
+    "aws-sdk": "^2.188.0",
+    "json2csv": "^3.11.5",
+    "request": "^2.83.0",
+    "sanitize-filename": "^1.6.1",
     "tokml": "^0.4.0",
-    "xml2js": "^0.4.16",
-    "yargs": "^6.6.0"
+    "geojson": "^0.5.0",
+    "gzip-buffer": "0.0.2",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^22.1.4"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC"

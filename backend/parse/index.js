@@ -1,77 +1,52 @@
-/*global module, require */
-/*jshint maxstatements: 20, maxlen:200 */
-/* TODO: tidy up this file */
-var url = require('url'),
-    iso = require('../iso'),
-    getStringBetween = function (str, start, end) {
-        'use strict';
-        var left = str.substring(str.indexOf(start) + start.length);
-        return left.substring(left.indexOf(end), -left.length);
-    };
+const url = require('url');
+const iso = require('../iso');
+
+const getStringBetween = (str, start, end) => {
+  const left = str.substring(str.indexOf(start) + start.length);
+  return left.substring(left.indexOf(end), -left.length);
+};
 
 module.exports = {
 
-    getStats: function (html) {
-        'use strict';
-        var str = getStringBetween(html, '"idKeys":["memberId"],"properties":{"country":', '</html>');
-        return JSON.parse('{"country":' + getStringBetween(str, '"idKeys":["memberId"],"properties":{"country":', '}') + '}');
-    },
-    getLink: function (profileUrl, html) {
-        'use strict';
-        var prefix = '/TravelMap-a_uid.',
-            urlParts = url.parse(profileUrl);
-        return urlParts.protocol + '//' + urlParts.hostname + prefix + getStringBetween(html, prefix, '"');
-    },
-    getAvatar: function (html) {
-        'use strict';
-        var avatar = getStringBetween(html, 'class="avatarUrl" src="', '"');
-        avatar = avatar.replace('http://', 'https://');
-        return avatar;
+  getStats(html) {
+    const str = getStringBetween(html, '"idKeys":["memberId"],"properties":{"country":', '</html>');
+    return JSON.parse(`{"country":${getStringBetween(str, '"idKeys":["memberId"],"properties":{"country":', '}')}}`);
+  },
+  getMapLink(profileUrl, html) {
+    const prefix = '/TravelMap-a_uid.';
+    const urlParts = url.parse(profileUrl);
+    return `${urlParts.protocol}//${urlParts.hostname}${prefix}${getStringBetween(html, prefix, '"')}`;
+  },
+  getAvatar(html) {
+    let avatar = getStringBetween(html, 'class="avatarUrl" src="', '"');
+    avatar = avatar.replace('http://', 'https://');
+    return avatar;
+  },
+  getLanguage(html) {
+    return getStringBetween(html, 'bingMapsLang = "', '"');
+  },
+  getUserName(html) {
+    return getStringBetween(html, '<div class="memberTitle">', '<');
+  },
+  getPlaces(html) {
+    const taPlaces = JSON.parse(`{"${getStringBetween(html, '"store":{"', ',"modules.membercenter.model.FriendCount')}}`)['modules.unimplemented.entity.LightWeightPin'];
 
-    },
-    getLanguage: function (html) {
-        'use strict';
-        return getStringBetween(html, 'bingMapsLang = "', '"');
-    },
-    getUserName: function (html) {
-        'use strict';
-        return getStringBetween(html, '<div class="memberTitle">', '<');
-    },
-    getPlaces: function (html) {
-        'use strict';
-        var places = [],
-            taPlaces = JSON.parse('{"' + getStringBetween(html, '"store":{"', ',"modules.membercenter.model.FriendCount') + '}')['modules.unimplemented.entity.LightWeightPin'],
-            key;
-
-        for (key in taPlaces) {
-            var taPlace,
-                name,
-                arrayOfStrings,
-                cityName,
-                countryName,
-                isoCode,
-                place;
-
-            if (taPlaces.hasOwnProperty(key)) {
-                taPlace = taPlaces[key];
-                name = taPlace.name;
-                arrayOfStrings = name.split(',');
-                cityName = arrayOfStrings[0];
-                countryName = arrayOfStrings[1].trimLeft();
-                isoCode = iso.get(countryName);
-                place = {
-                    city: cityName,
-                    country: countryName,
-                    iso: isoCode,
-                    flags: taPlace.flags,
-                    lat: taPlace.lat,
-                    lng: taPlace.lng,
-                    name: name
-                };
-                places.push(place);
-            }
-
-        }
-        return places;
-    }
+    return Object.keys(taPlaces).map((key) => {
+      const place = taPlaces[key];
+      const name = place.name;
+      const arrayOfStrings = name.split(',');
+      const cityName = arrayOfStrings[0];
+      const countryName = arrayOfStrings[1].trimLeft();
+      const isoCode = iso.get(countryName);
+      return {
+        city: cityName,
+        country: countryName,
+        iso: isoCode,
+        flags: place.flags,
+        lat: place.lat,
+        lng: place.lng,
+        name,
+      };
+    });
+  },
 };
