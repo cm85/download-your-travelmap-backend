@@ -15,7 +15,13 @@ module.exports = {
   getMapLink(profileUrl, html) {
     const prefix = '/TravelMap-a_uid.';
     const urlParts = url.parse(profileUrl);
-    return `${urlParts.protocol}//${urlParts.hostname}${prefix}${getStringBetween(html, prefix, '"')}`;
+    const path = getStringBetween(html, prefix, '"');
+
+    if (path === '') {
+      throw new Error('invalid url');
+    }
+
+    return `${urlParts.protocol}//${urlParts.hostname}${prefix}${path}`;
   },
   getAvatar(html) {
     let avatar = getStringBetween(html, 'class="avatarUrl" src="', '"');

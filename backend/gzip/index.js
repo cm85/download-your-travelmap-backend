@@ -14,7 +14,6 @@ module.exports = {
       const decompressed = await decompress(file);
       return decompressed;
     } catch (err) {
-      console.log('error');
       return Promise.resolve(file);
     }
   },

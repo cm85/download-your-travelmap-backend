@@ -3,6 +3,8 @@ const parse = require('../backend/parse');
 
 
 const html = fs.readFileSync(`${__dirname}/fixtures/travelmap.html`, 'utf8');
+const profile = fs.readFileSync(`${__dirname}/fixtures/profile.html`, 'utf8');
+const empty = fs.readFileSync(`${__dirname}/fixtures/empty.html`, 'utf8');
 const places = require('./fixtures/places');
 
 test('parse username', () => {
@@ -17,8 +19,8 @@ test('parse correct avatar url', () => {
   expect(parse.getAvatar(html)).toMatch(/facebook-avatar.jpg/);
 });
 
-test('parse link', () => {
-  expect(parse.getLink('https://www.tripadvisor.com/members/christianhaller', html)).toBe('https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693');
+test('parse travelmap link', () => {
+  expect(parse.getMapLink('https://www.tripadvisor.com/members/christianhaller', html)).toBe('https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693');
 });
 
 test('parse stats', () => {
@@ -29,4 +31,12 @@ test('parse stats', () => {
 
 test('parse places', () => {
   expect(parse.getPlaces(html)).toEqual(places);
+});
+
+test('parse map link', () => {
+  expect(parse.getMapLink('https://www.tripadvisor.com/members/christianhaller', html)).toEqual('https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693');
+
+  expect(parse.getMapLink('https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693', profile)).toEqual('https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693');
+
+  expect(() => { parse.getMapLink('https://www.google.com', empty); }).toThrowError('invalid url');
 });
