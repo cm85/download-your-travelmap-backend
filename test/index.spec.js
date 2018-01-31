@@ -1,4 +1,4 @@
-const app = require('../backend/index');
+const app = require('../dist/handler');
 
 test('follows redirect', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'http://www.tripadvisor.co.uk/MemberProfile-a_uid.F3B46B68117496775EE93A2AB6A9C1DC' } }, null, null);

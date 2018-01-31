@@ -27,22 +27,22 @@ exports.handler = async (event, context, callback) => {
   mapData.kml = await upload({
     Username: mapData.username,
     Key: 'text.kml',
-    Body: await kml(mapData),
+    Body: kml(mapData),
   });
 
 
   mapData.csv = await upload({
     Username: mapData.username,
     Key: 'text.csv',
-    Body: csv(mapData),
+    Body: await csv(mapData),
   });
 
   const successData = {
     data: mapData,
   };
 
-  console.log(successData);
-  // return mapData;
+  // console.log(successData);
+  return mapData;
 
 
   // console.log(result.status);
