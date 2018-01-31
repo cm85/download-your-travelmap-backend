@@ -1,5 +1,5 @@
 const url = require('url');
-const iso = require('../iso');
+const iso = require('./iso');
 
 const getStringBetween = (str, start, end) => {
   const left = str.substring(str.indexOf(start) + start.length);

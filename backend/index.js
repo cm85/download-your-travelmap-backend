@@ -3,6 +3,8 @@ const map = require('./map');
 const csv = require('./csv');
 const kml = require('./kml');
 const parse = require('./parse');
+const upload = require('./upload');
+const success = require('./success');
 
 exports.handler = async (event, context, callback) => {
   const url = decodeURIComponent(event.queryStringParameters.url).trim();
@@ -22,10 +24,25 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
-  const kmlData = kml(mapData);
-  const csvData = await csv(mapData);
-  console.log(kmlData);
-  return mapData;
+  mapData.kml = await upload({
+    Username: mapData.username,
+    Key: 'text.kml',
+    Body: await kml(mapData),
+  });
+
+
+  mapData.csv = await upload({
+    Username: mapData.username,
+    Key: 'text.csv',
+    Body: csv(mapData),
+  });
+
+  const successData = {
+    data: mapData,
+  };
+
+  console.log(successData);
+  // return mapData;
 
 
   // console.log(result.status);

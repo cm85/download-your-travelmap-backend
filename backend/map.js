@@ -1,4 +1,4 @@
-const parse = require('../parse');
+const parse = require('./parse');
 
 module.exports = html => ({
   date: new Date().toISOString(),
