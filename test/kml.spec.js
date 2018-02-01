@@ -1,8 +1,8 @@
 const fs = require('fs');
-const kml = require('../backend/kml');
+const kml = require('../app/kml');
 
 const html = fs.readFileSync(`${__dirname}/fixtures/travelmap.html`, 'utf8');
-const map = require('../backend/map')(html);
+const map = require('../app/map')(html);
 
 test('generates kml', () => {
   expect(kml(map)).toMatch(/<name>christianhaller's travelmap<\/name>/);

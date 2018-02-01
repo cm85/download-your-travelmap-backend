@@ -1,5 +1,5 @@
 const fs = require('fs');
-const parse = require('../backend/parse');
+const parse = require('../app/parse');
 
 
 const html = fs.readFileSync(`${__dirname}/fixtures/travelmap.html`, 'utf8');

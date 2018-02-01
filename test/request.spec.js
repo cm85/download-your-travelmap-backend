@@ -1,4 +1,4 @@
-const request = require('../backend/request');
+const request = require('../app/request');
 
 
 test('creates csv', async () => {

@@ -2,14 +2,14 @@
 
 (function () {
   let app = require('../backend'),
-    requestApp = require('../backend/request'),
+    requestApp = require('../app/request'),
     https = require('https'),
     xml2js = require('xml2js'),
-    csv = require('../backend/csv'),
+    csv = require('../app/csv'),
     parser = new xml2js.Parser(),
-    config = require('../backend/config')(),
+    config = require('../app/config')(),
     expect = require('expect.js/'),
-    kml = require('../backend/kml');
+    kml = require('../app/kml');
 
   describe('redirect', () => {
     it('301', function (done) {
