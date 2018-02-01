@@ -35,3 +35,14 @@ test('no profile url', async () => {
     });
   }
 });
+
+test('no profile url', async () => {
+  try {
+    await app.handler({ queryStringParameters: { url: 'https://www.tripadvisor.com.br/Saves?v=list#39842494' } }, null, null);
+  } catch (e) {
+    expect(e).toEqual({
+      error: 'URL invalid',
+    });
+  }
+});
+

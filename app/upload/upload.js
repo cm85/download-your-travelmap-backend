@@ -3,8 +3,8 @@ const { compress } = require('./gzip');
 const { save } = require('./s3');
 
 module.exports = async (data) => {
-  const Body = await compress(JSON.stringify(data.Body));
-  const Key = sanitize(`${data.Username}-${data.Key}`);
+  const Body = await compress(data.content);
+  const Key = sanitize(`${data.username}.${data.extension}`);
 
   await save({ ContentEncoding: 'gzip', Key, Body });
 

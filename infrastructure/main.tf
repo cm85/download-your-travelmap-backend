@@ -10,6 +10,12 @@ variable "region" {
     type = "string"
 }
 
+variable "bucket" {
+    default = "new-download-your-travelmap"
+    type = "string"
+}
+
+
 provider "aws" {
     region = "${var.region}"
 }
@@ -82,7 +88,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
 resource "aws_lambda_function" "lambda" {
     function_name = "${var.name}"
     role = "${aws_iam_role.role.arn}"
-    handler = "index.handler"
+    handler = "app.handler"
     runtime = "nodejs6.10"
     timeout = 10
     memory_size = 1024
@@ -93,19 +99,12 @@ resource "aws_lambda_function" "lambda" {
 # IAM
 resource "aws_iam_role" "role" {
     name = "myrole"
-    assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
+    assume_role_policy = "${data.aws_iam_policy_document.assume.json}"
 }
-POLICY
+
+resource "aws_iam_role_policy" "test_policy" {
+    name = "test_policy"
+    role = "${aws_iam_role.role.id}"
+
+    policy = "${data.aws_iam_policy_document.s3.json}"
 }
