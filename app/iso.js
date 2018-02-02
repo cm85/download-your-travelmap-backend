@@ -247,9 +247,6 @@ const iso = {
 };
 module.exports = {
   get(country) {
-    if (iso.hasOwnProperty(country)) {
-      return iso[country];
-    }
-    return '';
+    return iso[country] || '';
   },
 };
