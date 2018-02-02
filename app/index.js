@@ -37,5 +37,5 @@ exports.handler = async (event, context, callback) => {
     extension: 'csv',
   });
 
-  success(mapData, callback);
+  return success(mapData, callback);
 };

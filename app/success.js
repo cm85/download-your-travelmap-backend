@@ -6,5 +6,5 @@ module.exports = (data, callback) => {
     },
     body: JSON.stringify({ data }),
   };
-  callback(null, response);
+  return callback(null, response);
 };

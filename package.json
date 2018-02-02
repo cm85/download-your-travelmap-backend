@@ -32,7 +32,7 @@
     "babel-preset-env": "^1.6.1"
   },
   "scripts": {
-    "test": "jest",
+    "test": "REGION=us-east-1 BUCKET=new-download-your-travelmap jest",
     "webpack": "webpack"
   },
   "author": "",
