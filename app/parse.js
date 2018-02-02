@@ -39,7 +39,7 @@ module.exports = {
 
     return Object.keys(taPlaces).map((key) => {
       const place = taPlaces[key];
-      const name = place.name;
+      const { name } = place;
       const arrayOfStrings = name.split(',');
       const cityName = arrayOfStrings[0];
       const countryName = arrayOfStrings[1].trimLeft();

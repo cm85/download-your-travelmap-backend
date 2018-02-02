@@ -17,22 +17,26 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "eslint": "^4.16.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "jest": "^22.1.4",
-    "uglifyjs-webpack-plugin": "^1.1.8",
-    "webpack": "^3.10.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.1.4",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.10.0"
   },
   "scripts": {
     "test": "REGION=us-east-1 BUCKET=new-download-your-travelmap jest",
+    "lint": "eslint .",
     "webpack": "webpack"
   },
   "author": "",
