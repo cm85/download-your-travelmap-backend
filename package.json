@@ -37,7 +37,8 @@
   "scripts": {
     "test": "REGION=us-east-1 BUCKET=new-download-your-travelmap jest",
     "lint": "eslint .",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "stats": "webpack --json > stats.json"
   },
   "author": "",
   "license": "ISC"
