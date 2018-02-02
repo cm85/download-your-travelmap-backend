@@ -5,30 +5,6 @@ data "aws_acm_certificate" "christianhallercom" {
     statuses = ["ISSUED"]
 }
 
-variable "region" {
-    default = "us-east-1"
-    type = "string"
-}
-
-variable "bucket" {
-    default = "new-download-your-travelmap"
-    type = "string"
-}
-
-
-provider "aws" {
-    region = "${var.region}"
-}
-
-variable "api_prefix" {
-    default = "wtf"
-}
-
-variable "name" {
-    default = "download-your-travelmap"
-    type = "string"
-}
-
 data "aws_route53_zone" "christianhaller" {
     name = "christianhaller.com"
 }
@@ -49,7 +25,6 @@ resource "aws_api_gateway_domain_name" "api" {
     certificate_arn = "${data.aws_acm_certificate.christianhallercom.arn}"
 }
 
-# API Gateway
 resource "aws_api_gateway_rest_api" "api" {
     name = "${var.name}"
 }
@@ -90,7 +65,7 @@ resource "aws_lambda_function" "lambda" {
     role = "${aws_iam_role.role.arn}"
     handler = "app.handler"
     runtime = "nodejs6.10"
-    timeout = 10
+    timeout = 5
     memory_size = 1024
     filename = "${data.archive_file.lambda_zip.output_path}"
     source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
@@ -111,6 +86,5 @@ resource "aws_iam_role" "role" {
 resource "aws_iam_role_policy" "test_policy" {
     name = "test_policy"
     role = "${aws_iam_role.role.id}"
-
     policy = "${data.aws_iam_policy_document.s3.json}"
 }
