@@ -94,6 +94,12 @@ resource "aws_lambda_function" "lambda" {
     memory_size = 1024
     filename = "${data.archive_file.lambda_zip.output_path}"
     source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
+    environment {
+        variables = {
+            BUCKET = "${var.bucket}"
+            REGION = "${var.region}"
+        }
+    }
 }
 
 # IAM

@@ -22,6 +22,6 @@ module.exports = {
   },
 
   plugins: [
-    (true ? new UglifyJSPlugin() : null),
-  ].filter(Boolean),
+    new UglifyJSPlugin(),
+  ],
 };

@@ -6,9 +6,9 @@ const path = require('path');
 
 const s3 = new AWS.S3({
   params: {
-    Bucket: 'new-download-your-travelmap',
+    Bucket: process.env.BUCKET || 'test',
   },
-  region: 'us-east-1',
+  region: process.env.REGION || 'us-east-1',
 });
 
 
