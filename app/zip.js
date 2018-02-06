@@ -5,12 +5,9 @@ module.exports = (files) => {
   // creating archives
   const zip = new AdmZip();
 
-
   files.forEach((file) => {
-    // add file directly
-    zip.addFile(`travelmap.${file.type}`, Buffer.from(file.content), 'entry comment goes here');
+    zip.addFile(`${file.username}.${file.type}`, Buffer.from(file.content));
   });
-
 
   return zip.toBuffer();
 };

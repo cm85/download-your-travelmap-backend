@@ -6,6 +6,7 @@ const parse = require('./parse');
 const { save } = require('./s3');
 const zip = require('./zip');
 const success = require('./success');
+const sanitize = require('sanitize-filename');
 
 exports.handler = async (event, context, callback) => {
   const url = decodeURIComponent(event.queryStringParameters.url).trim();
@@ -25,21 +26,23 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
+  const username = sanitize(mapData.username);
+
   const zipFile = await zip([{
     content: kml(mapData),
     type: 'kml',
+    username,
   }, {
     content: await csv(mapData),
     type: 'csv',
+    username,
   }]);
 
   // save to s3
-
   await save({
-    Key: 'zip.zip',
+    Key: `${username}.zip`,
     Body: zipFile,
   });
-
 
   return success(mapData, callback);
 };
