@@ -43,7 +43,7 @@ module.exports = {
       const arrayOfStrings = name.split(',');
       const cityName = arrayOfStrings[0];
       const countryName = arrayOfStrings[1].trimLeft();
-      const isoCode = iso.get(countryName);
+      const isoCode = iso(countryName);
       return {
         city: cityName,
         country: countryName,

@@ -3,7 +3,8 @@ const map = require('./map');
 const csv = require('./csv');
 const kml = require('./kml');
 const parse = require('./parse');
-const upload = require('./upload/upload');
+const { save } = require('./s3');
+const zip = require('./zip');
 const success = require('./success');
 
 exports.handler = async (event, context, callback) => {
@@ -24,18 +25,21 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
-  mapData.kml = await upload({
-    username: mapData.username,
+  const zipFile = await zip([{
     content: kml(mapData),
-    extension: 'kml',
-  });
-
-
-  mapData.csv = await upload({
-    username: mapData.username,
+    type: 'kml',
+  }, {
     content: await csv(mapData),
-    extension: 'csv',
+    type: 'csv',
+  }]);
+
+  // save to s3
+
+  await save({
+    Key: 'zip.zip',
+    Body: zipFile,
   });
+
 
   return success(mapData, callback);
 };

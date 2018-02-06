@@ -245,8 +245,4 @@ const iso = {
   Zambia: 'ZM',
   Zimbabwe: 'ZW',
 };
-module.exports = {
-  get(country) {
-    return iso[country] || '';
-  },
-};
+module.exports = country => iso[country] || '';

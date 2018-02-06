@@ -5,7 +5,6 @@ const parse = require('../app/parse');
 const html = fs.readFileSync(`${__dirname}/fixtures/travelmap.html`, 'utf8');
 const profile = fs.readFileSync(`${__dirname}/fixtures/profile.html`, 'utf8');
 const empty = fs.readFileSync(`${__dirname}/fixtures/empty.html`, 'utf8');
-const places = require('./fixtures/places');
 
 test('parse username', () => {
   expect(parse.getUserName(html)).toBe('christianhaller');
@@ -30,7 +29,7 @@ test('parse stats', () => {
 });
 
 test('parse places', () => {
-  expect(parse.getPlaces(html)).toEqual(places);
+  expect(parse.getPlaces(html)).toMatchSnapshot();
 });
 
 test('parse map link', () => {
