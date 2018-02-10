@@ -9,7 +9,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
 
 resource "aws_lambda_function" "lambda" {
   function_name = "${var.name}"
-  role = "${aws_iam_role.role.arn}"
+  role = "${aws_iam_role.lambda.arn}"
   handler = "app.handler"
   runtime = "nodejs6.10"
   timeout = 5

@@ -8,7 +8,6 @@ data "aws_acm_certificate" "christianhallercom" {
 data "aws_route53_zone" "christianhaller" {
     name = "christianhaller.com"
 }
-
 resource "aws_route53_record" "example" {
     zone_id = "${data.aws_route53_zone.christianhaller.id}"
     name = "${aws_api_gateway_domain_name.api.domain_name}"
@@ -20,10 +19,7 @@ resource "aws_route53_record" "example" {
     }
 }
 
-
-
-# IAM
-resource "aws_iam_role" "role" {
-    name = "myrole"
+resource "aws_iam_role" "lambda" {
+    name = "DownloadYourTravelmapLambdaRole"
     assume_role_policy = "${data.aws_iam_policy_document.assume.json}"
 }

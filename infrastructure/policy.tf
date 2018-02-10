@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "s3" {
     actions = ["s3:*"]
     resources = ["${aws_s3_bucket.bucket.arn}/*"],
     principals {
-      identifiers = ["${aws_iam_role.role.arn}"]
+      identifiers = ["${aws_iam_role.lambda.arn}"]
       type = "AWS"
     }
     sid = "hey"

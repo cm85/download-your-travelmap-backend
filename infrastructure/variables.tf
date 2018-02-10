@@ -1,9 +1,9 @@
-variable "region" {
-  default = "us-east-1"
+variable "name" {
+  default = "omg"
 }
 
-variable "bucket" {
-  default = "new-download-your-travelmap"
+variable "region" {
+  default = "us-east-1"
 }
 
 provider "aws" {
@@ -12,8 +12,4 @@ provider "aws" {
 
 variable "api_prefix" {
   default = "api"
-}
-
-variable "name" {
-  default = "omg"
 }
