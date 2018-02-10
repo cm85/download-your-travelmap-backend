@@ -1,50 +1,69 @@
+const fs = require('fs');
+
+process.env.BUCKET = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 'utf8').toString()).modules[0].resources['aws_s3_bucket.bucket'].primary.id;
+
 const app = require('../app/index');
 
-const cb = (data, response) => JSON.parse(response.body).data;
+const cb = (nth, data) => ({ body: JSON.parse(data.body), status: data.statusCode });
 
 test('follows redirect', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'http://www.tripadvisor.co.uk/MemberProfile-a_uid.F3B46B68117496775EE93A2AB6A9C1DC' } }, null, cb);
-  expect(result.username).toMatch('Atanas_GK');
+
+  expect(result.body.username).toMatch('Atanas_GK');
 });
 
 test('test trim', async () => {
   const result = await app.handler({ queryStringParameters: { url: ' http://www.tripadvisor.com/members/christianhaller' } }, null, cb);
-  expect(result.username).toMatch('christianhaller');
-});
 
+  expect(result.body.username).toMatch('christianhaller');
+});
 
 test('map url', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'https://www.tripadvisor.com/TravelMap-a_uid.F16A76DBDC7075B786CC2C71B9198693' } }, null, cb);
-  expect(result.username).toMatch('christianhaller');
+
+  expect(result.body.username).toMatch('christianhaller');
 });
 
 test('no profile url', async () => {
-  try {
-    await app.handler({ queryStringParameters: { url: 'http://www.tripadvisor.co.uk' } }, null, cb);
-  } catch (e) {
-    expect(e).toEqual({
-      error: 'URL invalid',
-    });
-  }
+  const result = await app.handler({ queryStringParameters: { url: 'http://www.tripadvisor.co.uk' } }, null, cb);
+
+  expect(result).toEqual({
+    status: 500,
+    body: {
+      error: 'invalid URL',
+    },
+  });
 });
 
 test('no profile url', async () => {
-  try {
-    await app.handler({ queryStringParameters: { url: 'http://christianhaller.com' } }, null, null);
-  } catch (e) {
-    expect(e).toEqual({
-      error: 'URL invalid',
-    });
-  }
+  const result = await app.handler({ queryStringParameters: { url: 'http://christianhaller.com' } }, null, cb);
+
+  expect(result).toEqual({
+    status: 500,
+    body: {
+      error: 'invalid URL',
+    },
+  });
 });
 
 test('no profile url', async () => {
-  try {
-    await app.handler({ queryStringParameters: { url: 'https://www.tripadvisor.com.br/Saves?v=list#39842494' } }, null, null);
-  } catch (e) {
-    expect(e).toEqual({
-      error: 'URL invalid',
-    });
-  }
+  const result = await app.handler({ queryStringParameters: { url: 'https://www.tripadvisor.com.br/Saves?v=list#39842494' } }, null, cb);
+
+  expect(result).toEqual({
+    status: 500,
+    body: {
+      error: 'invalid URL',
+    },
+  });
 });
 
+test('no profile url', async () => {
+  const result = await app.handler({ queryStringParameters: { url: 'x' } }, null, cb);
+
+  expect(result).toEqual({
+    status: 500,
+    body: {
+      error: 'invalid URL',
+    },
+  });
+});

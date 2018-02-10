@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "aws-sdk": "^2.190.0",
+    "aws-sdk": "^2.192.0",
     "geojson": "^0.5.0",
     "json2csv": "^3.11.5",
     "mime-types": "^2.1.17",
@@ -28,9 +28,9 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
-    "jest": "^22.2.1",
+    "jest": "^22.2.2",
     "uglifyjs-webpack-plugin": "^1.1.8",
-    "webpack": "^3.10.0"
+    "webpack": "^3.11.0"
   },
   "scripts": {
     "test": "REGION=us-east-1 BUCKET=new-download-your-travelmap jest",

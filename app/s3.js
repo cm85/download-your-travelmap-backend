@@ -3,12 +3,11 @@ const promisify = require('util.promisify');
 const mime = require('mime-types');
 const path = require('path');
 
-
 const s3 = new AWS.S3({
   params: {
-    Bucket: process.env.BUCKET || 'new-download-your-travelmap',
+    Bucket: process.env.BUCKET,
   },
-  region: process.env.REGION || 'us-east-1',
+  region: process.env.REGION,
 });
 
 
