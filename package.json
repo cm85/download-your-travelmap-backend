@@ -1,6 +1,6 @@
 {
-  "name": "backend",
-  "version": "1.0.2",
+  "name": "app",
+  "version": "1.0.0",
   "description": "",
   "main": "app/index.js",
   "dependencies": {
@@ -33,7 +33,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "test": "REGION=us-east-1 BUCKET=new-download-your-travelmap jest",
+    "test": "jest",
     "lint": "eslint .",
     "webpack": "webpack",
     "stats": "webpack --json > stats.json",

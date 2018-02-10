@@ -55,7 +55,6 @@ exports.handler = async (event, context, callback) => {
 
     return response(200, mapData, callback);
   } catch (error) {
-    console.log(error);
-    return response(500, { error: `invalid URL\n ${JSON.stringify(event)}` }, callback);
+    return response(500, { error: 'invalid URL' }, callback);
   }
 };

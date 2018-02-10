@@ -1,1 +1,5 @@
 aws lambda invoke --function-name omg --payload '{ "queryStringParameters": { "url": "http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller" } }' /dev/null
+
+
+
+curl 'https://api-omg.christianhaller.com/free-my-map?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller'
