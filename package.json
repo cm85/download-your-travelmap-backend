@@ -37,7 +37,7 @@
     "lint": "eslint .",
     "webpack": "webpack",
     "stats": "webpack --json > stats.json",
-    "tf": "npm run webpack && terraform apply"
+    "tf": "npm run webpack && cd infrastructure && terraform apply -auto-approve"
   },
   "author": "",
   "license": "ISC"

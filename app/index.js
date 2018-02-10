@@ -7,19 +7,24 @@ const { save } = require('./s3');
 const zip = require('./zip');
 const response = require('./response');
 const sanitize = require('sanitize-filename');
+const url = require('url');
 
 exports.handler = async (event, context, callback) => {
   try {
-    const url = decodeURIComponent(event.queryStringParameters.url).trim();
+    const inputUrl = decodeURIComponent(event.queryStringParameters.url).trim();
 
-    const result = await request(url);
+    if (!url.parse(inputUrl).hostname.includes('tripadvisor')) {
+      return response(500, { error: 'Please enter your TripAdvisor profile URL' }, callback);
+    }
+
+    const result = await request(inputUrl);
     let mapData;
 
     try {
       mapData = map(result.body);
     } catch (error) {
       try {
-        const mapUrl = parse.getMapLink(url, result.body);
+        const mapUrl = parse.getMapLink(inputUrl, result.body);
         const secondResult = await request(mapUrl);
         mapData = map(secondResult.body);
       } catch (anotherError) {
@@ -50,6 +55,7 @@ exports.handler = async (event, context, callback) => {
 
     return response(200, mapData, callback);
   } catch (error) {
-    return response(500, { error: 'invalid URL' }, callback);
+    console.log(error);
+    return response(500, { error: `invalid URL\n ${JSON.stringify(event)}` }, callback);
   }
 };

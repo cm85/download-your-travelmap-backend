@@ -1,1 +1,1 @@
-aws lambda invoke --function-name download-your-travelmap --payload '{ "queryStringParameters": { "url": "http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller" } }' /dev/null
+aws lambda invoke --function-name omg --payload '{ "queryStringParameters": { "url": "http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller" } }' /dev/null
