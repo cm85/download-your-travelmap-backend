@@ -14,11 +14,12 @@ data "aws_iam_policy_document" "assume" {
 data "aws_iam_policy_document" "s3" {
   statement {
     actions = ["s3:*"]
-    resources =  [
-  "arn:aws:s3:::${var.bucket}/*"
-]
+    resources = ["${aws_s3_bucket.bucket.arn}/*"],
+    principals {
+      identifiers = ["${aws_iam_role.role.arn}"]
+      type = "AWS"
+    }
     sid = "hey"
     effect = "Allow"
   }
 }
-

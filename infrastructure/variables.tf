@@ -11,9 +11,9 @@ provider "aws" {
 }
 
 variable "api_prefix" {
-  default = "wtf"
+  default = "api"
 }
 
 variable "name" {
-  default = "download-your-travelmap"
+  default = "omg"
 }

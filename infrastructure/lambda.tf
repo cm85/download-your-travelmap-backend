@@ -18,7 +18,7 @@ resource "aws_lambda_function" "lambda" {
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
   environment {
     variables = {
-      BUCKET = "${var.bucket}"
+      BUCKET = "${aws_s3_bucket.bucket.bucket}"
       REGION = "${var.region}"
     }
   }
