@@ -6,8 +6,6 @@ const region = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 
   .toString()).modules[0].resources['aws_lambda_function.lambda'].primary.attributes['environment.0.variables.REGION'];
 const AWS = require('aws-sdk');
 
-console.log(region);
-
 const lambda = new AWS.Lambda({
   region,
 });
@@ -24,6 +22,6 @@ lambda.invoke(params, (err, data) => {
   if (err) {
     console.log(err, err.stack);
   } else {
-    console.log(data);
+    console.log(JSON.parse(JSON.parse(data.Payload).body).username);
   }
 });
