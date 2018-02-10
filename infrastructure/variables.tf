@@ -1,5 +1,5 @@
 variable "name" {
-  default = "omg"
+  default = "dytm2018"
 }
 
 variable "region" {

@@ -22,6 +22,7 @@ lambda.invoke(params, (err, data) => {
   if (err) {
     console.log(err, err.stack);
   } else {
+    console.log(data.Payload);
     console.log(JSON.parse(JSON.parse(data.Payload).body).username);
   }
 });
