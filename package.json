@@ -28,8 +28,9 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
-    "jest": "^22.2.2",
+    "jest": "^22.3.0",
     "node-fetch": "^2.0.0",
+    "npm-check-updates": "^2.14.0",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.11.0"
   },
@@ -38,6 +39,7 @@
     "lint": "eslint .",
     "webpack": "webpack",
     "stats": "webpack --json > stats.json",
+    "update": "rm -rf node_modules && ncu -a && npm i",
     "tf": "npm run webpack && cd infrastructure && terraform apply -auto-approve"
   },
   "author": "",
