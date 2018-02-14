@@ -10,14 +10,14 @@ const { path } = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate'
   .toString()).modules[0].resources['aws_api_gateway_resource.resource'].primary.attributes;
 
 const query = '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller';
-console.log(gatewayHost);
-console.log(aRecordHost + path + query);
+// console.log(gatewayHost + path + query);
+// console.log(aRecordHost + path + query);
 
 
 require('node-fetch')(gatewayHost + path + query)
   .then(async (res) => {
     console.log(res.status);
-    console.log(res.headers.raw());
+    // console.log(res.headers.raw());
     // console.log(await res.text());
   });
 
@@ -25,7 +25,7 @@ require('node-fetch')(gatewayHost + path + query)
 require('node-fetch')(aRecordHost + path + query)
   .then(async (res) => {
     console.log(res.status);
-    console.log(res.headers.raw());
+    // console.log(res.headers.raw());
     // console.log(await res.text());
   });
 
