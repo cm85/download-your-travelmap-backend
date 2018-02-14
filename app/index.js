@@ -53,6 +53,8 @@ exports.handler = async (event, context, callback) => {
       Body: zipFile,
     });
 
+    mapData.zip = `${username}.zip`;
+
     return response(200, mapData, callback);
   } catch (error) {
     return response(500, { error: 'invalid URL' }, callback);
