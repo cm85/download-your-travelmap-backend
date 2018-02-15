@@ -1,5 +1,5 @@
 variable "name" {
-  default = "christian2018xxxx"
+  default = "download-your-travelmap-reloaded"
 }
 
 variable "region" {
@@ -12,4 +12,8 @@ provider "aws" {
 
 variable "api_prefix" {
   default = "api"
+}
+
+variable "bucket_prefix" {
+  default = "bucket"
 }
