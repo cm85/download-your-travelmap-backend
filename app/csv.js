@@ -1,7 +1,6 @@
-const promisify = require('util.promisify');
-const json2csv = promisify(require('json2csv'));
-
 const fields = ['lat', 'lon', 'name', 'country', 'city', 'iso', 'been'];
+const Json2csvParser = require('json2csv').Parser;
+
 
 module.exports = (data) => {
   const map = data.places.map(item => ({
@@ -14,9 +13,10 @@ module.exports = (data) => {
     iso: item.iso,
   }));
 
-  return json2csv({
-    data: map,
+  const json2csvParser = new Json2csvParser({
     fields,
   });
+
+  return json2csvParser.parse(map);
 };
 

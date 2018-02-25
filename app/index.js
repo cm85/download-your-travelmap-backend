@@ -34,14 +34,14 @@ exports.handler = async (event, context, callback) => {
 
     const username = sanitize(mapData.username);
 
-    const zipFile = await zip([
+    const zipFile = zip([
       {
         content: kml(mapData),
         type: 'kml',
         username,
       },
       {
-        content: await csv(mapData),
+        content: csv(mapData),
         type: 'csv',
         username,
       },

@@ -5,6 +5,7 @@ module.exports = {
     'babel-polyfill',
     './app/index.js',
   ],
+  mode: 'production',
   target: 'node',
   output: {
     libraryTarget: 'commonjs',
@@ -12,7 +13,7 @@ module.exports = {
     filename: 'app.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loaders: ['babel-loader'],

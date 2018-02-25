@@ -4,6 +4,7 @@ process.env.BUCKET = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfst
   .toString()).modules[0].resources['aws_s3_bucket.bucket'].primary.id;
 
 const app = require('../app/index');
+// const app = require('../dist/app');
 
 const cb = (nth, data) => ({
   body: JSON.parse(data.body),
