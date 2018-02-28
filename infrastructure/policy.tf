@@ -4,22 +4,25 @@ data "aws_iam_policy_document" "assume" {
 
     principals {
       identifiers = ["lambda.amazonaws.com"]
-      type = "Service"
+      type        = "Service"
     }
-    sid = "hey"
+
+    sid    = "hey"
     effect = "Allow"
   }
 }
 
 data "aws_iam_policy_document" "s3" {
   statement {
-    actions = ["s3:*"]
-    resources = ["${aws_s3_bucket.bucket.arn}/*"],
+    actions   = ["s3:*"]
+    resources = ["${aws_s3_bucket.bucket.arn}/*"]
+
     principals {
       identifiers = ["${aws_iam_role.lambda.arn}"]
-      type = "AWS"
+      type        = "AWS"
     }
-    sid = "hey"
+
+    sid    = "hey"
     effect = "Allow"
   }
 }

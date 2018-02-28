@@ -1,9 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const extractPlugin = new ExtractTextPlugin({
-  filename: 'frontend/styles/main.scss',
-});
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 module.exports = {
   entry: './frontend/scripts/main.js',
@@ -12,6 +8,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist',
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -25,15 +22,11 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.scss$/,
-        use: extractPlugin.extract({
-          use: ['css-loader', 'sass-loader'],
-        }),
-      },
     ],
   },
   plugins: [
-    extractPlugin,
+    new WebpackAssetsManifest({
+      merge: true,
+    }),
   ],
 };
