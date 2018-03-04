@@ -6,8 +6,6 @@
   "dependencies": {
     "adm-zip": "^0.4.7",
     "aws-sdk": "^2.205.0",
-    "d3": "^4.13.0",
-    "d3-geo": "^1.9.1",
     "geojson": "^0.5.0",
     "json2csv": "^4.0.0",
     "mime-types": "^2.1.18",
@@ -17,7 +15,6 @@
     "request-promise": "^4.2.2",
     "sanitize-filename": "^1.6.1",
     "tokml": "^0.4.0",
-    "topojson-client": "^3.0.0",
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {
