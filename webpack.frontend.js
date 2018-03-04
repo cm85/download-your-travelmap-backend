@@ -1,10 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SriPlugin = require('webpack-subresource-integrity');
 const WebpackSHAHash = require('webpack-sha-hash');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 const extractSass = new ExtractTextPlugin({
   filename: 'styles.[contenthash].css',
@@ -34,6 +36,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
       },
       {
         test: /\.scss$/,
@@ -71,8 +77,13 @@ module.exports = {
       enabled: true,
     }),
     new HtmlWebpackPlugin({
-      template: './frontend/index.html',
+      template: './frontend/index.hbs',
       inject: false,
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        handlebarsLoader: {},
+      },
     }),
     new HtmlWebpackInlineSVGPlugin({
       svgoConfig: {

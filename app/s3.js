@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk'); // eslint-disable-line
-const promisify = require('util.promisify');
 const mime = require('mime-types');
 const path = require('path');
 
@@ -18,7 +17,7 @@ const s3Api = {
       ACL: 'public-read',
       ...conf,
     };
-    return promisify(s3.putObject.bind(s3))(params);
+    return s3.putObject(params).promise();
   },
 };
 
