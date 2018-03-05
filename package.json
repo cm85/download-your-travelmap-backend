@@ -18,6 +18,7 @@
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {
+    "aws-sdk-mock": "^1.7.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
@@ -36,13 +37,14 @@
     "html-webpack-inline-svg-plugin": "^1.2.3",
     "html-webpack-plugin": "^3.0.4",
     "jest": "^22.4.2",
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^2.1.1",
     "node-sass": "^4.7.2",
     "npm": "^5.7.1",
     "npm-check-updates": "^3.0.0-alpha1",
     "postcss-hash": "^0.2.1",
     "postcss-loader": "^2.1.1",
     "sass-loader": "^6.0.7",
+    "sinon": "^4.4.2",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^4.1.0",
@@ -58,7 +60,6 @@
     "frontend": "webpack --config webpack.frontend.js",
     "stats": "webpack --json > stats.json",
     "update": "rm -rf node_modules && ncu -a && npm i",
-    "hbs": "hbs --data ./package.json --data ./extra.json ./homepage.hbs --output ./site/",
     "tf": "npm run webpack && cd infrastructure && terraform apply -auto-approve",
     "css": "node-sass frontend/styles/main.scss ./dist/styles.css && postcss ./dist/styles.css -o ./dist/styles.css -m"
   },
