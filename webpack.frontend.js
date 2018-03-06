@@ -18,7 +18,7 @@ module.exports = {
     js: './frontend/scripts/main.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 's3'),
     filename: 'bundle.[chunkhash].js',
     publicPath: '/',
     crossOriginLoading: 'anonymous',

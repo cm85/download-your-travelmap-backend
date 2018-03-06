@@ -17,3 +17,4 @@ circles.setAttribute('class', 'been');
 circles.setAttribute('cy', latlang[1]);
 circles.setAttribute('r', 0.4);
 svg.appendChild(circles);
+//

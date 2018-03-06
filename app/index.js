@@ -20,12 +20,12 @@ exports.handler = async (event, context, callback) => {
     let mapData;
 
     try {
-      mapData = map(result.body);
+      mapData = map(result);
     } catch (error) {
       try {
-        const mapUrl = parse.getMapLink(inputUrl, result.body);
+        const mapUrl = parse.getMapLink(inputUrl, result);
         const secondResult = await request(mapUrl);
-        mapData = map(secondResult.body);
+        mapData = map(secondResult);
       } catch (anotherError) {
         return response(500, { error: 'invalid URL' }, callback);
       }
@@ -56,6 +56,7 @@ exports.handler = async (event, context, callback) => {
 
     return response(200, mapData, callback);
   } catch (error) {
+    // console.error(error);
     return response(500, { error: 'invalid URL' }, callback);
   }
 };

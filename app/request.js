@@ -1,9 +1,3 @@
-const request = require('request-promise');
+const fetch = require('node-fetch');
 
-module.exports = profileUrl => request({
-  uri: profileUrl,
-  transform: (body, response) => ({
-    body,
-    status: response.statusCode,
-  }),
-});
+module.exports = url => fetch(url).then(res => res.text());

@@ -1,16 +1,17 @@
 const fs = require('fs');
 const AWS = require('aws-sdk-mock');
 
-
 process.env.BUCKET = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 'utf8')
   .toString()).modules[0].resources['aws_s3_bucket.bucket'].primary.id;
 
+let app;
+
 beforeEach(() => {
   AWS.mock('S3', 'putObject');
+  app = require('../app/index');
 });
 
 
-const app = require('../app/index');
 // const app = require('../dist/app');
 
 const cb = (nth, data) => ({
