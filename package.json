@@ -55,7 +55,7 @@
     "test": "jest",
     "lint": "eslint .",
     "webpack": "webpack",
-    "frontend": "rm -rf ./dist/s3 && webpack --config webpack.frontend.js",
+    "frontend": "rm ./dist/s3/* && webpack --config webpack.frontend.js",
     "stats": "webpack --json > stats.json",
     "update": "rm -rf node_modules && ncu -a && npm i",
     "tf": "npm run webpack && cd infrastructure && terraform apply -auto-approve",
