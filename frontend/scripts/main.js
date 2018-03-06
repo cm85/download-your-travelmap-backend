@@ -1,3 +1,5 @@
+require('../styles/main.scss');
+
 const mercator = require('projections/mercator');
 
 const projection = ([lon, lat]) => {

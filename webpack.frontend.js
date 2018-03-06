@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,12 +7,12 @@ const SriPlugin = require('webpack-subresource-integrity');
 const WebpackSHAHash = require('webpack-sha-hash');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 const extractSass = new ExtractTextPlugin({
-  filename: 'styles.[contenthash].css',
+  filename: '[contenthash:20].css',
 });
-
 
 module.exports = {
   entry: {
@@ -19,7 +20,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist', 's3'),
-    filename: 'bundle.[chunkhash].js',
+    filename: '[chunkhash].js',
     publicPath: '/',
     crossOriginLoading: 'anonymous',
   },
@@ -54,8 +55,8 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                require('autoprefixer')(),
-                require('cssnano')(),
+                autoprefixer(),
+                cssnano(),
               ],
               sourceMap: true,
             },
@@ -73,22 +74,19 @@ module.exports = {
   },
   plugins: [
     new SriPlugin({
-      hashFuncNames: ['sha256', 'sha384'],
+      hashFuncNames: ['sha384'],
       enabled: true,
     }),
     new HtmlWebpackPlugin({
       template: './frontend/index.hbs',
       inject: false,
     }),
+    new HtmlWebpackInlineSVGPlugin({
+      runPreEmit: true,
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         handlebarsLoader: {},
-      },
-    }),
-    new HtmlWebpackInlineSVGPlugin({
-      svgoConfig: {
-        removeTitle: false,
-        removeViewBox: true,
       },
     }),
     new UglifyJsPlugin(),

@@ -12,6 +12,7 @@ const url = require('url');
 exports.handler = async (event, context, callback) => {
   try {
     const inputUrl = decodeURIComponent(event.queryStringParameters.url).trim();
+
     if (!url.parse(inputUrl).hostname.includes('tripadvisor')) {
       return response(500, { error: 'Please enter your TripAdvisor profile URL' }, callback);
     }
