@@ -28,7 +28,7 @@ exports.handler = async (event, context, callback) => {
         const secondResult = await request(mapUrl);
         mapData = map(secondResult);
       } catch (anotherError) {
-        return response(500, { error: 'invalid URL' }, callback);
+        return response(500, { error: 'rrrinvalid URL' }, callback);
       }
     }
 
@@ -57,7 +57,7 @@ exports.handler = async (event, context, callback) => {
 
     return response(200, mapData, callback);
   } catch (error) {
-    // console.error(error);
+    console.error(error);
     return response(500, { error: 'invalid URL' }, callback);
   }
 };

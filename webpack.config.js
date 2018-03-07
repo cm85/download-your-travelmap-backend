@@ -10,7 +10,7 @@ module.exports = {
   output: {
     libraryTarget: 'commonjs',
     path: `${__dirname}/dist`,
-    filename: 'app.js',
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -23,6 +23,6 @@ module.exports = {
   },
 
   plugins: [
-    new UglifyJSPlugin(),
+    // new UglifyJSPlugin(),
   ],
 };

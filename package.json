@@ -7,10 +7,10 @@
     "adm-zip": "^0.4.7",
     "aws-sdk": "^2.205.0",
     "geojson": "^0.5.0",
+    "isomorphic-fetch": "^2.2.1",
     "json2csv": "^4.0.1",
     "mime-types": "^2.1.18",
     "projections": "^1.0.0",
-    "node-fetch": "^2.1.1",
     "sanitize-filename": "^1.6.1",
     "tokml": "^0.4.0"
   },
