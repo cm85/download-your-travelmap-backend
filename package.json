@@ -53,7 +53,7 @@
   },
   "scripts": {
     "test": "jest && lint",
-    "lint": "eslint .",
+    "lint": "eslint app",
     "webpack": "webpack",
     "frontend": "rm ./dist/s3/* && webpack --config webpack.frontend.js",
     "stats": "webpack --json > stats.json",
