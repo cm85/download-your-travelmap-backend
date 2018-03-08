@@ -10,6 +10,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
+const endpoint = '/local.json';
+
 const extractSass = new ExtractTextPlugin({
   filename: '[contenthash:20].css',
 });
@@ -79,6 +81,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './frontend/index.hbs',
+      endpoint,
       inject: false,
     }),
     new HtmlWebpackInlineSVGPlugin({

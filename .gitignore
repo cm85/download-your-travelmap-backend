@@ -3,3 +3,4 @@ node_modules
 infrastructure/.terraform
 dist/*
 stats.json
+/coverage/
