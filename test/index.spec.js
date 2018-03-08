@@ -46,23 +46,13 @@ test('map url', async () => {
 test('no profile url', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'http://www.tripadvisor.co.uk' } }, null, cb);
 
-  expect(result).toEqual({
-    status: 500,
-    body: {
-      error: 'invalid URL',
-    },
-  });
+  expect(result).toMatchSnapshot();
 });
 
 test('no tripadvisor  url', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'http://christianhaller.com' } }, null, cb);
 
-  expect(result).toEqual({
-    status: 500,
-    body: {
-      error: 'Please enter your TripAdvisor profile URL',
-    },
-  });
+  expect(result).toMatchSnapshot();
 });
 
 test('no profile url', async () => {
@@ -71,21 +61,11 @@ test('no profile url', async () => {
     cb,
   );
 
-  expect(result).toEqual({
-    status: 500,
-    body: {
-      error: 'invalid URL',
-    },
-  });
+  expect(result).toMatchSnapshot();
 });
 
 test('no url', async () => {
   const result = await app.handler({ queryStringParameters: { url: 'x' } }, null, cb);
 
-  expect(result).toEqual({
-    status: 500,
-    body: {
-      error: 'invalid URL',
-    },
-  });
+  expect(result).toMatchSnapshot();
 });

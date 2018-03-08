@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`no profile url 1`] = `
+Object {
+  "body": "invalid Url",
+  "status": 500,
+}
+`;
+
+exports[`no profile url 2`] = `
+Object {
+  "body": "invalid Url",
+  "status": 500,
+}
+`;
+
+exports[`no tripadvisor  url 1`] = `
+Object {
+  "body": "Please enter your TripAdvisor profile URL",
+  "status": 500,
+}
+`;
+
+exports[`no url 1`] = `
+Object {
+  "body": "Please enter a valid URL",
+  "status": 500,
+}
+`;

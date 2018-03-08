@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`happy path 1`] = `true`;
+
+exports[`invalid url 1`] = `"Please enter your TripAdvisor profile URL"`;
+
+exports[`no url 1`] = `"Please enter a valid URL"`;

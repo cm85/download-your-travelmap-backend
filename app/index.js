@@ -1,37 +1,19 @@
-const request = require('./request');
-const map = require('./map');
 const csv = require('./csv');
 const kml = require('./kml');
-const parse = require('./parse');
+
+const getMapData = require('./getMapData');
 const { save } = require('./s3');
 const zip = require('./zip');
 const response = require('./response');
 const sanitize = require('sanitize-filename');
-const url = require('url');
+const validateUrl = require('./validateUrl');
 
 exports.handler = async (event, context, callback) => {
   try {
     const inputUrl = decodeURIComponent(event.queryStringParameters.url).trim();
 
-    if (!url.parse(inputUrl).hostname.includes('tripadvisor')) {
-      return response(500, { error: 'Please enter your TripAdvisor profile URL' }, callback);
-    }
-
-    const result = await request(inputUrl);
-    let mapData;
-
-    try {
-      mapData = map(result);
-    } catch (error) {
-      try {
-        const mapUrl = parse.getMapLink(inputUrl, result);
-        const secondResult = await request(mapUrl);
-        mapData = map(secondResult);
-      } catch (anotherError) {
-        return response(500, { error: 'invalid URL' }, callback);
-      }
-    }
-
+    validateUrl(inputUrl);
+    const mapData = await getMapData(inputUrl);
     const username = sanitize(mapData.username);
 
     const zipFile = zip([
@@ -57,7 +39,7 @@ exports.handler = async (event, context, callback) => {
 
     return response(200, mapData, callback);
   } catch (error) {
-    console.error(error); // eslint disable-line
-    return response(500, { error: 'invalid URL' }, callback);
+    // console.error(error); // eslint disable-line
+    return response(500, error.message, callback);
   }
 };
