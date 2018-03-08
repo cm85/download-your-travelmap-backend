@@ -20,9 +20,9 @@ const params = {
 };
 lambda.invoke(params, (err, data) => {
   if (err) {
-    console.log(err, err.stack);
+    console.log(err, err.stack); /* eslint-disable-line no-console */
   } else {
-    console.log(data.Payload);
-    console.log(JSON.parse(JSON.parse(data.Payload).body).username);
+    console.log(data.Payload); /* eslint-disable-line no-console */
+    console.log(JSON.parse(JSON.parse(data.Payload).body).username); /* eslint-disable-line */
   }
 });

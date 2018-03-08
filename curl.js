@@ -9,21 +9,19 @@ const aRecordHost = `https://${JSON.parse(fs.readFileSync('./infrastructure/terr
 
 const query = '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller';
 
-console.log(aRecordHost);
-
-require('node-fetch')(gatewayHost + query)
+require('isomorphic-fetch')(gatewayHost + query)
   .then(async (res) => {
-    console.log(`${res.status}: ${res.url}`);
+    console.log(`${res.status}: ${res.url}`); /* eslint-disable-line no-console */
     // console.log(res.headers.raw());
     // console.log(await res.text());
   });
 
 
-require('node-fetch')(aRecordHost + query)
+require('isomorphic-fetch')(aRecordHost + query)
   .then(async (res) => {
-    console.log(`${res.status}: ${res.url}`);
+    console.log(`${res.status}: ${res.url}`); /* eslint-disable-line no-console */
     // console.log(res.headers.raw());
     // console.log(await res.text());
-  }).catch(console.log);
+  }).catch(console.log); /* eslint-disable-line no-console */
 
 // window.fetch('https://api-dytm2018.christianhaller.com/free-my-map?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller').then(async(res)=>{console.log(await res.text())});

@@ -8,7 +8,7 @@ let app;
 
 beforeEach(() => {
   AWS.mock('S3', 'putObject');
-  app = require('../app/index');
+  app = require('../app/index'); /* eslint-disable-line global-require */
 });
 
 
