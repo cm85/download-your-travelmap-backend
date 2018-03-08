@@ -20,3 +20,34 @@ circles.setAttribute('cy', latlang[1]);
 circles.setAttribute('r', 0.4);
 svg.appendChild(circles);
 //
+
+const form = document.querySelector('form');
+
+fetch('/local.json', {
+  method: 'POST',
+  body: new FormData(form),
+});
+
+const input = document.getElementById('url');
+
+input.addEventListener(
+  'invalid',
+  () => {
+    input.classList.add('error');
+  },
+  false,
+);
+
+
+input.addEventListener(
+  'valid',
+  () => {
+    input.classList.remove('error');
+    input.classList.add('valid');
+  },
+  false,
+);
+
+input.addEventListener('blur', () => {
+  input.checkValidity();
+});

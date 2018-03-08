@@ -1,3 +1,12 @@
-*{
-    background: red;
+/* https://jsfiddle.net/Loilo/jdct84x6/1/ */
+
+input.error {
+    border-color: red;
+}
+
+
+
+input.valid{
+    border-color: green;
+    background: #68b04d;
 }
