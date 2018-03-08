@@ -1,12 +1,115 @@
-/* https://jsfiddle.net/Loilo/jdct84x6/1/ */
 
-input.error {
-    border-color: red;
+html {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  background: #e0e7ef;
+  min-height: 100%;
+  color: #798594;
+  line-height: 1.6;
+}
+
+form {
+  background: #333;
+  z-index: 1;
+  padding: 1em;
+  margin: 2em auto;
+  border-radius: 3px;
+  box-shadow: 0 0.1em 0.4em #b7ccde;
+  max-width: 25em;
+
+
+}
+
+fieldset {
+  border: none;
+  :hover {
+    background: #fff;
+  }
 }
 
 
+button, input {
+  font: inherit;
+  color: inherit;
+  padding: 0.4em 0.6em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
 
-input.valid{
-    border-color: green;
-    background: #68b04d;
+button {
+  cursor: pointer;
+  background-color: #e9f1ff;
+  color: #7e93b7;
+}
+input {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+
+input::placeholder {
+  color: #bbb;
+}
+
+/* Error styles */
+
+.invalid {
+  box-shadow: 0 0.15em 0.15em -0.1em rgba(4, 4, 4, 0.1);
+  background: red;
+}
+
+.invalid + .error {
+  display: block;
+}
+
+@keyframes show-error {
+  from {
+    transform: translateY(-2em) scaleY(0.2);
+  }
+
+  to {
+    transform: none;
+  }
+}
+.wrapper {
+  max-width: 90%;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0 0.1em 0.4em #b7ccde;
+  margin:0 auto;
+}
+
+.map {
+  display: none;
+}
+svg {
+  vertical-align: bottom;
+
+}
+
+@media only screen
+and (min-device-width : 1200px)
+ {
+  form {
+    position: absolute;
+    left: 50%;                        /* horizontal alignment */
+    top: 20%;                         /* vertical alignment */
+    transform: translate(-50%, -50%);
+    margin: 1em auto;
+    min-width: 500px;
+  }
+  .map {
+    opacity: 0.1;
+    display: block;
+  }
+  /* STYLES GO HERE */
 }

@@ -19,18 +19,19 @@
   <title>Download Your TripAdvisor Travel Map 📍</title>
 </head>
 <body>
-<form action="{{htmlWebpackPlugin.options.endpoint}}">
-  <fieldset>
-    <label>
-      <input type="url" id="url" name="url" required />
 
-    </label>
-    <button type="submit">submit</button>
-  </fieldset>
-</form>
-
-<div style="width:70%">
-  <img inline src="./frontend/map.svg">
+<div class="wrapper">
+  <form action="{{htmlWebpackPlugin.options.endpoint}}">
+    <fieldset>
+      <label>
+        <input placeholder="https://tripadvisor.com/..." type="url" id="url" name="url" required />
+      </label>
+      <button type="submit">submit</button>
+    </fieldset>
+  </form>
+  <div class="map">
+<img inline src="./frontend/map.svg">
+  </div>
 </div>
 
 {{#each htmlWebpackPlugin.files.js}}

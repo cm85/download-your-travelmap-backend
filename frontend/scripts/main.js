@@ -1,53 +1,9 @@
 require('../styles/main.scss');
+const form = require('./form');
+const map = require('./map');
 
-const mercator = require('projections/mercator');
-
-const projection = ([lon, lat]) => {
-  const { x, y } = mercator({ lon, lat }, { latLimit: 80 });
-  return [
-    +(x * 100).toFixed(3),
-    +(y * 100).toFixed(3),
-  ];
-};
-
-const svg = document.getElementsByTagName('svg')[0]; // Get svg element
-const circles = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-
-const latlang = projection([9.73322, 52.37052]);
-circles.setAttribute('cx', latlang[0]);
-circles.setAttribute('class', 'been');
-circles.setAttribute('cy', latlang[1]);
-circles.setAttribute('r', 0.4);
-svg.appendChild(circles);
-//
-
-const form = document.querySelector('form');
-
-fetch('/local.json', {
-  method: 'POST',
-  body: new FormData(form),
+document.addEventListener('DOMContentLoaded', () => {
+  map();
+  form();
 });
 
-const input = document.getElementById('url');
-
-input.addEventListener(
-  'invalid',
-  () => {
-    input.classList.add('error');
-  },
-  false,
-);
-
-
-input.addEventListener(
-  'valid',
-  () => {
-    input.classList.remove('error');
-    input.classList.add('valid');
-  },
-  false,
-);
-
-input.addEventListener('blur', () => {
-  input.checkValidity();
-});

@@ -96,4 +96,9 @@ module.exports = {
     new WebpackSHAHash(),
     extractSass,
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist/s3'),
+    compress: true,
+    port: 9000,
+  },
 };
