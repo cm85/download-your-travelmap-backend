@@ -52,7 +52,7 @@
     "webpack-subresource-integrity": "^1.1.0-rc.2"
   },
   "scripts": {
-    "test": "eslint . && jest",
+    "test": "eslint . && jest --coverage",
     "webpack": "webpack",
     "frontend": "rm ./dist/s3/* && webpack --config webpack.frontend.js",
     "stats": "webpack --json > stats.json",
