@@ -12,16 +12,18 @@ const projection = ([lon, lat]) => {
 };
 
 module.exports = (places) => {
-  const svg = document.getElementsByTagName('svg')[0]; // Get svg element
-  const circles = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-
-  const latlang = projection([
-    9.73322,
-    52.37052,
-  ]);
-  circles.setAttribute('cx', latlang[0]);
-  circles.setAttribute('class', 'been');
-  circles.setAttribute('cy', latlang[1]);
-  circles.setAttribute('r', 0.4);
-  svg.appendChild(circles);
+  const svg = document.getElementsByTagName('svg')[0];
+  places.forEach((place) => {
+    const latlang = projection([
+      place.lng,
+      place.lat,
+    ]);
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', latlang[0]);
+    circle.setAttribute('class', 'been');
+    circle.setAttribute('cy', latlang[1]);
+    circle.setAttribute('r', 0.2);
+    circle.setAttribute('fill', 'red');
+    svg.appendChild(circle);
+  });
 };

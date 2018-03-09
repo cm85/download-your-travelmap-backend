@@ -8,7 +8,7 @@ module.exports = () => {
     console.log('submit');
     try {
       const result = await window.fetch(' https://15qdjxcjh3.execute-api.us-east-1.amazonaws.com/test?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller');
-      console.log((await result.json()).places);
+      map((await result.json()).places);
     } catch (err) {
       console.log(err);
     }
