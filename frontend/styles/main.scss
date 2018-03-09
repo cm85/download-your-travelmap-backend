@@ -1,14 +1,8 @@
-
-html {
-  height: 100%;
-}
-
 body {
   font-family: sans-serif;
   font-weight: 300;
   font-size: 20px;
   background: #e0e7ef;
-  min-height: 100%;
   color: #798594;
   line-height: 1.6;
 }
@@ -21,8 +15,6 @@ form {
   border-radius: 3px;
   box-shadow: 0 0.1em 0.4em #b7ccde;
   max-width: 25em;
-
-
 }
 
 fieldset {
@@ -31,7 +23,6 @@ fieldset {
     background: #fff;
   }
 }
-
 
 button, input {
   font: inherit;
@@ -49,37 +40,16 @@ button {
   background-color: #e9f1ff;
   color: #7e93b7;
 }
-input {
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
 
 input::placeholder {
   color: #bbb;
 }
-
-/* Error styles */
 
 .invalid {
   box-shadow: 0 0.15em 0.15em -0.1em rgba(4, 4, 4, 0.1);
   background: red;
 }
 
-.invalid + .error {
-  display: block;
-}
-
-@keyframes show-error {
-  from {
-    transform: translateY(-2em) scaleY(0.2);
-  }
-
-  to {
-    transform: none;
-  }
-}
 .wrapper {
   max-width: 90%;
   position: relative;
@@ -90,19 +60,20 @@ input::placeholder {
 
 .map {
   display: none;
-}
-svg {
-  vertical-align: bottom;
 
+  svg {
+    vertical-align: bottom;
+
+  }
 }
 
-@media only screen
-and (min-device-width : 1200px)
+
+@media only screen and (min-device-width : 1200px)
  {
   form {
     position: absolute;
-    left: 50%;                        /* horizontal alignment */
-    top: 20%;                         /* vertical alignment */
+    left: 50%;
+    top: 20%;
     transform: translate(-50%, -50%);
     margin: 1em auto;
     min-width: 500px;
@@ -111,5 +82,4 @@ and (min-device-width : 1200px)
     opacity: 0.1;
     display: block;
   }
-  /* STYLES GO HERE */
 }
