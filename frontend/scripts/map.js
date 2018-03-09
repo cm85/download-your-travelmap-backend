@@ -1,17 +1,17 @@
 const mercator = require('projections/mercator');
 
-module.exports = () => {
-  const projection = ([lon, lat]) => {
-    const { x, y } = mercator({
-      lon,
-      lat,
-    }, { latLimit: 80 });
-    return [
-      +(x * 100).toFixed(3),
-      +(y * 100).toFixed(3),
-    ];
-  };
+const projection = ([lon, lat]) => {
+  const { x, y } = mercator({
+    lon,
+    lat,
+  }, { latLimit: 80 });
+  return [
+    +(x * 100).toFixed(3),
+    +(y * 100).toFixed(3),
+  ];
+};
 
+module.exports = (places) => {
   const svg = document.getElementsByTagName('svg')[0]; // Get svg element
   const circles = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 

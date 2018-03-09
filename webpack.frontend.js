@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SriPlugin = require('webpack-subresource-integrity');
 const WebpackSHAHash = require('webpack-sha-hash');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -18,7 +18,7 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
   entry: {
-    js: './frontend/scripts/main.js',
+    js: ['babel-polyfill', './frontend/scripts/main.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist', 's3'),
@@ -26,7 +26,7 @@ module.exports = {
     publicPath: '/',
     crossOriginLoading: 'anonymous',
   },
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -36,6 +36,10 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['es2015'],
+              plugins: [
+                'transform-async-to-generator',
+                'transform-object-rest-spread',
+              ],
             },
           },
         ],
@@ -92,7 +96,7 @@ module.exports = {
         handlebarsLoader: {},
       },
     }),
-    new UglifyJsPlugin(),
+    // new UglifyJsPlugin(),
     new WebpackSHAHash(),
     extractSass,
   ],
