@@ -4,7 +4,7 @@ module.exports = () => {
   const form = document.querySelector('form');
   const input = form.querySelector('#url');
   // const apiEndpoint = form.getAttribute('action');
-  const submit = async (event, value) => {
+  const submit = async () => {
     console.log('submit');
     try {
       const result = await window.fetch(' https://15qdjxcjh3.execute-api.us-east-1.amazonaws.com/test?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller');
