@@ -14,14 +14,16 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    dependencies:
-        pre:
-          - wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-          - unzip ./tf.zip
-
     working_directory: ~/repo
 
     steps:
+      - install
+      - run:
+        name: Install dependencies
+        working_directory: /
+        command: wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+        command: unzip terraform_0.11.3_linux_amd64.zip
+        
       - checkout
 
       # Download and cache dependencies
@@ -31,7 +33,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: sh terraform --version
+
       - run: npm install
 
       - save_cache:
