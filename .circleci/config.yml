@@ -26,6 +26,10 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      - run:  curl -L --silent https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/tf.zip \
+              && unzip /tmp/tf.zip -d /usr/local/bin/ && chmod a+x /usr/local/bin/terraform \
+
+      - run: terraform --version
       - run: npm install
 
       - save_cache:
