@@ -47,6 +47,6 @@ jobs:
       - run:
           name: Deploy
           command: |
-          ./infrastructure/terraform init
-          npm run tf
+            ./infrastructure/terraform init
+            npm run tf
 
