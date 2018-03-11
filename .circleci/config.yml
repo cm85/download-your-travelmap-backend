@@ -20,9 +20,9 @@ jobs:
       - checkout
 
       - run:
-        name:  Download tf
-        command: |
-          echo node --version
+          name:  Download tf
+          command: |
+            echo node --version
 
       # Download and cache dependencies
       - restore_cache:
