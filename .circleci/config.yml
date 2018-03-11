@@ -42,7 +42,6 @@ jobs:
             curl -o tf/terraform.zip https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
             unzip tf/terraform.zip
             chmod +x terraform
-            export PATH=.:$PATH
             terraform --version
             npm run webpack
             cd infrastructure
