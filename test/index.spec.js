@@ -1,8 +1,6 @@
-const fs = require('fs');
 const AWS = require('aws-sdk-mock');
 
-process.env.BUCKET = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 'utf8')
-  .toString()).modules[0].resources['aws_s3_bucket.bucket'].primary.id;
+process.env.BUCKET = 'bucket-download-your-travelmap-reloaded';
 
 let app;
 
