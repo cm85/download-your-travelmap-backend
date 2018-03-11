@@ -23,10 +23,10 @@ jobs:
           name:  Download tf
           command: |
             echo node --version
-            curl -o infrastructure/terraform.zip https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
-            unzip infrastructure/terraform.zip
-            chmod +x infrastructure/terraform
-            ./infrastructure/terraform --version
+            curl -o terraform.zip https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+            unzip terraform.zip
+            chmod +x terraform
+            ./terraform --version
 
       # Download and cache dependencies
       - restore_cache:
@@ -47,6 +47,6 @@ jobs:
       - run:
           name: Deploy
           command: |
-            ./infrastructure/terraform init
-            npm run tf
+            cd infrastructure
+            ./terraform init ~/repo/infrastructure
 
