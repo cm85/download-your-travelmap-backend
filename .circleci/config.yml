@@ -19,6 +19,19 @@ jobs:
     steps:
       - checkout
 
+      - run:
+                name:  Download cc-test-reporter
+                command: |
+                  mkdir -p tmp/
+                  curl -L https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip > ./tmp/tf
+                  unzip ./tmp/tf
+                  chmod +x ./tf/terraform
+            - persist_to_workspace:
+                root: tmp
+                paths:
+                  - tf
+            # Download and cache dependencies
+
       # Download and cache dependencies
       - restore_cache:
           keys:
