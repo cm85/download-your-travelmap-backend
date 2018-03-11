@@ -48,4 +48,5 @@ jobs:
           name: Deploy
           command: |
             ./terraform init ~/repo/infrastructure
+            ./terraform apply -auto-approve ~/repo/infrastructure
 
