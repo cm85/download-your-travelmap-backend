@@ -22,10 +22,7 @@ jobs:
       - run:
         name:  Download tf
         command: |
-          mkdir -p tmp/
-          curl -L https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip > ./tmp/tf
-          unzip ./tmp/tf
-          chmod +x ./tf/terraform
+          echo node --version
 
       # Download and cache dependencies
       - restore_cache:
