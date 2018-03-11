@@ -26,7 +26,7 @@ jobs:
             curl -o terraform.zip https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
             unzip terraform.zip
             chmod +x terraform
-            echo 'export PATH=.:$PATH' >> $BASH_ENV
+            echo 'export PATH=./:$PATH' >> $BASH_ENV
             terraform --version
 
       # Download and cache dependencies
