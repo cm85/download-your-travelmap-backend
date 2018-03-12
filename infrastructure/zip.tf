@@ -1,5 +1,5 @@
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "../dist"
-  output_path = "../dist/lambda.zip"
+  source_dir  = "./dist"
+  output_path = "./dist/lambda.zip"
 }

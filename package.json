@@ -58,7 +58,8 @@
     "frontend": "webpack --config webpack.frontend.js",
     "stats": "webpack --json > stats.json",
     "update": "ncu -a && npm i",
-    "tf": "npm run webpack && cd infrastructure && terraform apply -auto-approve",
+    "tf:init": "terraform init infrastructure",
+    "tf:apply": "terraform apply infrastructure -auto-approve",
     "start:dev": "webpack-dev-server --config webpack.frontend.js"
   },
   "author": "",
