@@ -19,7 +19,7 @@ jobs:
          BASH_ENV: ~/.bashrc
 
     steps:
-      - run: echo 'export PATH=$(pwd)/:$PATH' >> $BASH_ENV
+      - run: echo 'export PATH=$(pwd)/:$PATH' > $BASH_ENV
       - checkout
 
       # Download and cache dependencies
