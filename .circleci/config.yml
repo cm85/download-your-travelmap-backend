@@ -43,6 +43,6 @@ jobs:
             unzip tf/terraform.zip
             ls
             chmod +x terraform
-            echo 'export PATH=.:$PATH' >> $BASH_ENV
+            echo 'export PATH=$(pwd):$PATH' >> $BASH_ENV
             terraform --version
             npm run tf
