@@ -15,8 +15,11 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
+    environment:
+         BASH_ENV: ~/.bashrc
 
     steps:
+      - run: echo 'export PATH=$(pwd)/:$PATH' >> $BASH_ENV
       - checkout
 
       # Download and cache dependencies
