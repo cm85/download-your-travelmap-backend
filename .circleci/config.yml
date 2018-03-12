@@ -46,4 +46,4 @@ jobs:
             terraform --version
             terraform init infrastructure
             npm run webpack
-            terraform apply -auto-approve
+            terraform apply infrastructure -auto-approve
