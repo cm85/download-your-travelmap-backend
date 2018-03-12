@@ -44,6 +44,6 @@ jobs:
             chmod +x terraform
             export PATH=$(pwd):$PATH
             terraform --version
-            terraform init infrastructure
             npm run webpack
-            terraform apply infrastructure -auto-approve
+            npm run tf:init
+            npm run tf:apply
