@@ -1,9 +1,5 @@
-const fs = require('fs');
-
-const functionName = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 'utf8')
-  .toString()).modules[0].resources['aws_lambda_function.lambda'].primary.id;
-const region = JSON.parse(fs.readFileSync('./infrastructure/terraform.tfstate', 'utf8')
-  .toString()).modules[0].resources['aws_lambda_function.lambda'].primary.attributes['environment.0.variables.REGION'];
+const functionName = 'download-your-travelmap-reloaded';
+const region = 'us-east-1';
 const AWS = require('aws-sdk');
 
 const lambda = new AWS.Lambda({
