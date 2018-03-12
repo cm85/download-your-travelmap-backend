@@ -59,7 +59,7 @@
     "stats": "webpack --json > stats.json",
     "update": "ncu -a && npm i",
     "tf:init": "terraform init infrastructure",
-    "tf:apply": "terraform apply infrastructure -auto-approve",
+    "tf:apply": "terraform apply -auto-approve infrastructure",
     "start:dev": "webpack-dev-server --config webpack.frontend.js"
   },
   "author": "",
