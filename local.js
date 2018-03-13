@@ -1,4 +1,4 @@
-/* eslint-disable-file */
+/* eslint-disable */
 const payload = { queryStringParameters: { url: 'http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller' } };
 const app = require('./app/index');
 const babelApp = require('./output/index');
