@@ -1,7 +1,19 @@
 {
-  "variable": {
-    "name": {
-      "default": "download-your-travelmap-reloaded"
+  "variable": [
+    {
+      "name": {
+        "default": "download-your-travelmap-reloaded"
+      }
+    },
+    {
+      "bucket": {
+        "default": "bucket-download-your-travelmap-reloaded"
+      }
+    },
+    {
+      "api_prefix": {
+        "default": "api"
+      }
     }
-  }
+  ]
 }

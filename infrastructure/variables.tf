@@ -5,11 +5,3 @@ variable "region" {
 provider "aws" {
   region = "${var.region}"
 }
-
-variable "api_prefix" {
-  default = "api"
-}
-
-variable "bucket_prefix" {
-  default = "bucket"
-}
