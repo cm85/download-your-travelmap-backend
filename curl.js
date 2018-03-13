@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
+const fs = require('fs');
 
+const gatewayHost = '';
+const aRecordHost = '';
 
 const query = '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller';
 let url = gatewayHost + query;
