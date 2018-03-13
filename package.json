@@ -60,6 +60,7 @@
     "update": "ncu -a && npm i",
     "tf:init": "terraform init infrastructure",
     "tf:apply": "terraform apply -auto-approve infrastructure",
+    "tf:destroy": "terraform destroy infrastructure",
     "start:dev": "webpack-dev-server --config webpack.frontend.js"
   },
   "author": "",

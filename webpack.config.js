@@ -9,7 +9,7 @@ module.exports = {
   target: 'node',
   output: {
     libraryTarget: 'commonjs',
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/output`,
     filename: 'index.js',
   },
   module: {

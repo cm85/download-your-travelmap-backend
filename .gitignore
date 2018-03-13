@@ -4,3 +4,5 @@ infrastructure/.terraform
 dist/*
 stats.json
 /coverage/
+output
+lambda/lambda.zip

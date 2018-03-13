@@ -1,7 +1,3 @@
-variable "name" {
-  default = "download-your-travelmap-reloaded"
-}
-
 variable "region" {
   default = "us-east-1"
 }
