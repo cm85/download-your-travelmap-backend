@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk-mock');
 
-process.env.BUCKET = 'bucket-download-your-travelmap-reloaded';
+process.env.BUCKET = require('../infrastructure/variables.tf.json').variable[1].bucket.default;
 
 let app;
 

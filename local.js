@@ -1,13 +1,26 @@
 /* eslint-disable */
 const payload = { queryStringParameters: { url: 'http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller' } };
+process.env.BUCKET = require('./infrastructure/variables.tf.json').variable[1].bucket.default;
 const app = require('./app/index');
-const babelApp = require('./output/index');
-
 const cb = (obj, res) => {
-  console.log(JSON.parse(res.body).username);
+    console.log(JSON.parse(res.body).username);
 };
 
-process.env.BUCKET = 'bucket-download-your-travelmap-reloaded';
+let babelApp;
 
+try{
+  babelApp = require('./output/index');
+  babelApp.handler(payload, null, cb);
+
+}
+catch(error){
+  console.log('babelApp failed')
+}
 app.handler(payload, null, cb);
-babelApp.handler(payload, null, cb);
+
+
+
+
+
+
+

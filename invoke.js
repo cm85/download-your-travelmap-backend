@@ -1,4 +1,5 @@
-const functionName = 'download-your-travelmap-reloaded';
+const functionName = require('./infrastructure/variables.tf.json').variable[0].app.default;
+
 const region = 'us-east-1';
 const AWS = require('aws-sdk');
 
