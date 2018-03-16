@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-const fs = require('fs');
+const fs = require('fs-extra');
 
-const gatewayHost = '';
-const aRecordHost = '';
+const appName = require('./infrastructure/variables.tf.json').variable[0].name.default;
+
+const gatewayHost = `https://api-${appName}.christianhaller.com`;
+const aRecordHost = `https://api-${appName}.christianhaller.com`;
 
 const query = '?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller';
 let url = gatewayHost + query;
@@ -21,5 +23,5 @@ require('isomorphic-fetch')(url)
     console.log(`${res.status}: ${res.url}`);
     // console.log(res.headers.raw());
     // console.log(await res.text());
-    fs.writeFileSync('./dist/s3/local.json', await res.text());
+    fs.outputFile('./dist/s3/local.json', await res.text());
   }).catch(console.log);

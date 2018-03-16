@@ -1,7 +1,6 @@
 const AdmZip = require('adm-zip');
 
 module.exports = (files) => {
-  // creating archives
   const zip = new AdmZip();
 
   files.forEach((file) => {

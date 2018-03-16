@@ -21,7 +21,9 @@
 <body>
 
 <div class="wrapper">
-  <form action="{{htmlWebpackPlugin.options.endpoint}}">
+  <div class="form">
+      <button class="expander" type="button"><img inline src="./frontend/expand.svg"></button>
+      <form action="{{htmlWebpackPlugin.options.endpoint}}">
     <fieldset>
       <label>
         <input placeholder="https://tripadvisor.com/..." type="url" id="url" name="url" required />
@@ -29,11 +31,13 @@
       <button type="submit">submit</button>
     </fieldset>
   </form>
-  <div class="map">
-<img inline src="./frontend/map.svg">
   </div>
-</div>
+    <div class="map">
+<img inline src="./frontend/map.svg">
+      <div class="gmap"></div>
+  </div>
 
+</div>
 {{#each htmlWebpackPlugin.files.js}}
 <script src="{{this}}"
   integrity="{{{lookup @root.htmlWebpackPlugin.files.jsIntegrity @index}}}"

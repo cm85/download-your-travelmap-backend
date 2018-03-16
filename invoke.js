@@ -1,4 +1,4 @@
-const functionName = require('./infrastructure/variables.tf.json').variable[0].app.default;
+const functionName = require('./infrastructure/variables.tf.json').variable[0].name.default;
 
 const region = 'us-east-1';
 const AWS = require('aws-sdk');

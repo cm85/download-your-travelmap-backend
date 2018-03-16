@@ -7,48 +7,79 @@ body {
   line-height: 1.6;
 }
 
-form {
+.form {
   background: #333;
   z-index: 1;
-  padding: 1em;
-  margin: 2em auto;
   border-radius: 3px;
   box-shadow: 0 0.1em 0.4em #b7ccde;
+  transition: max-width .6ms ease;
   max-width: 25em;
-}
+  &.success {
+    max-width: 30px;
+    min-width: auto;
+    left:0;
+    transform: translate(0%, -50%);
+    overflow: hidden;
 
-fieldset {
-  border: none;
-  :hover {
-    background: #fff;
+    .expander {
+      display: block;
+    }
+  }
+  .expander {
+    position: absolute;
+    background: transparent;
+    border: none;
+    padding: 0;
+    top: 50%;
+    height: 30px;
+    margin-top: -15px;
+    width: 30px;
+    display: none;
+  }
+  form {
+    padding: 0 1em;
+
+
+
+    fieldset {
+      border: none;
+      :hover {
+        background: #fff;
+      }
+    }
+
+    button, input {
+      font: inherit;
+      color: inherit;
+      padding: 0.4em 0.6em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 0.5em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #e9f1ff;
+      color: #7e93b7;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    .invalid {
+      box-shadow: 0 0.15em 0.15em -0.1em rgba(4, 4, 4, 0.1);
+      background: red;
+    }
+  }
+  svg {
+    width: 30px;
+
   }
 }
 
-button, input {
-  font: inherit;
-  color: inherit;
-  padding: 0.4em 0.6em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-}
-
-button {
-  cursor: pointer;
-  background-color: #e9f1ff;
-  color: #7e93b7;
-}
-
-input::placeholder {
-  color: #bbb;
-}
-
-.invalid {
-  box-shadow: 0 0.15em 0.15em -0.1em rgba(4, 4, 4, 0.1);
-  background: red;
-}
 
 .wrapper {
   max-width: 90%;
@@ -63,20 +94,27 @@ input::placeholder {
 
   svg {
     vertical-align: bottom;
+    display: none;
 
+  }
+  .gmap {
+    height: 500px;
   }
 }
 
 
 @media only screen and (min-device-width : 1200px)
  {
-  form {
+  .form {
     position: absolute;
     left: 50%;
-    top: 20%;
+    top: 30%;
     transform: translate(-50%, -50%);
-    margin: 1em auto;
     min-width: 500px;
+
+  }
+  .success + .map {
+    opacity: 1;
   }
   .map {
     opacity: 0.1;

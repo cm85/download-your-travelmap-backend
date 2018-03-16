@@ -1,4 +1,6 @@
 const mercator = require('projections/mercator');
+const GoogleMapsLoader = require('google-maps'); // only for common js environments
+
 
 const projection = ([lon, lat]) => {
   const { x, y } = mercator({
@@ -25,5 +27,27 @@ module.exports = (places) => {
     circle.setAttribute('r', 0.2);
     circle.setAttribute('fill', 'red');
     svg.appendChild(circle);
+  });
+  GoogleMapsLoader.KEY = 'AIzaSyCP7j9YBPek1DQXtTVOOs3E6c6_3cw1qZQ';
+  GoogleMapsLoader.load((google) => {
+    const map = new google.maps.Map(document.querySelector('.gmap'), {
+      center: new google.maps.LatLng(0, 0),
+      zoom: 1,
+      minZoom: 1,
+    });
+
+    const bounds = new google.maps.LatLngBounds();
+    places.filter(place => place.flags.includes('been')).forEach((place) => {
+      const { lat, lng } = place;
+      bounds.extend(new google.maps.LatLng(lat, lng));
+
+      new google.maps.Marker({
+        position: { lat, lng },
+        map,
+      });
+    });
+
+
+    map.fitBounds(bounds);
   });
 };
