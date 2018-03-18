@@ -1,7 +1,6 @@
 const mercator = require('projections/mercator');
 const GoogleMapsLoader = require('google-maps'); // only for common js environments
 
-
 const projection = ([lon, lat]) => {
   const { x, y } = mercator({
     lon,
@@ -14,7 +13,7 @@ const projection = ([lon, lat]) => {
 };
 
 module.exports = (places) => {
-  const svg = document.getElementsByTagName('svg')[0];
+  const svg = document.querySelector('.map svg');
   places.forEach((place) => {
     const latlang = projection([
       place.lng,
@@ -47,8 +46,6 @@ module.exports = (places) => {
         map,
       });
     });
-
-
     map.fitBounds(bounds);
   });
 };

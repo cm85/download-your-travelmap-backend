@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SriPlugin = require('webpack-subresource-integrity');
 const WebpackSHAHash = require('webpack-sha-hash');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -26,7 +26,7 @@ module.exports = {
     publicPath: '/',
     crossOriginLoading: 'anonymous',
   },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -96,7 +96,7 @@ module.exports = {
         handlebarsLoader: {},
       },
     }),
-    // new UglifyJsPlugin(),
+    new UglifyJsPlugin(),
     new WebpackSHAHash(),
     extractSass,
   ],

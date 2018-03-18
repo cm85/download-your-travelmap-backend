@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: sans-serif;
   font-weight: 300;
@@ -17,12 +22,15 @@ body {
   &.success {
     max-width: 30px;
     min-width: auto;
-    left:0;
+    left: -30px;
     transform: translate(0%, -50%);
     overflow: hidden;
 
     .expander {
       display: block;
+      :hover {
+       background: red;
+      }
     }
   }
   .expander {
@@ -30,14 +38,19 @@ body {
     background: transparent;
     border: none;
     padding: 0;
-    top: 50%;
-    height: 30px;
-    margin-top: -15px;
+    height:100%;
+    cursor: pointer;
     width: 30px;
     display: none;
+
+    svg {
+      width: 30px;
+      height: 100%;
+    }
+
   }
   form {
-    padding: 0 1em;
+    padding: 2em;
 
     fieldset {
       border: none;
@@ -72,9 +85,6 @@ body {
       background: red;
     }
   }
-  svg {
-    width: 30px;
-  }
 }
 
 .wrapper {
@@ -86,15 +96,14 @@ body {
 }
 
 .map {
-  display: none;
 
   svg {
     vertical-align: bottom;
-    display: none;
 
   }
   .gmap {
     height: 500px;
+    display: none;
   }
 }
 
