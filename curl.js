@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 const fs = require('fs-extra');
 
 const appName = require('./infrastructure/variables.tf.json').variable[0].name.default;

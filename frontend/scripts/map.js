@@ -41,6 +41,7 @@ module.exports = (places) => {
       const { lat, lng } = place;
       bounds.extend(new google.maps.LatLng(lat, lng));
 
+      /* eslint-disable no-new */
       new google.maps.Marker({
         position: { lat, lng },
         map,
