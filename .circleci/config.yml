@@ -39,10 +39,9 @@ jobs:
           name: Deploy
           command: |
             echo $TF_VERSION
-            mkdir tf
             curl -o terraform.zip https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip
-            unzip terraform.zip
-            chmod +x terraform
+            unzip ./terraform.zip
+            chmod +x ./terraform
             export PATH=$(pwd):$PATH
             terraform --version
             npm run webpack
