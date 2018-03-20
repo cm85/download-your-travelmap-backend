@@ -40,7 +40,7 @@ jobs:
           command: |
             echo $TF_VERSION
             mkdir tf
-            curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
+            curl -o tf/terraform.zip https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip
             unzip tf/terraform.zip
             chmod +x terraform
             export PATH=$(pwd):$PATH
