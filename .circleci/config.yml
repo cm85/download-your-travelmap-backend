@@ -19,7 +19,6 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Deploy
         command: |
           curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
           ls
