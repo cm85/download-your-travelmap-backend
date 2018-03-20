@@ -18,6 +18,16 @@ jobs:
 
     steps:
       - checkout
+      command: |
+                  echo $TF_VERSION
+                  curl -o terraform.zip https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip
+                  gunzip terraform.zip
+                  chmod +x ./terraform
+                  export PATH=$(pwd):$PATH
+                  terraform --version
+                  npm run webpack
+                  npm run tf:init
+                  npm run tf:apply
 
       # Download and cache dependencies
       - restore_cache:
@@ -34,16 +44,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
-      - run:
-          name: Deploy
-          command: |
-            echo $TF_VERSION
-            curl -o terraform.zip https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip
-            gunzip ./terraform.zip
-            chmod +x ./terraform
-            export PATH=$(pwd):$PATH
-            terraform --version
-            npm run webpack
-            npm run tf:init
-            npm run tf:apply
+      #- run: npm test
+      
