@@ -20,10 +20,10 @@ jobs:
       - checkout
       - run:
         command: |
-          curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
-          ls
-          unzip tf/terraform.zip
-          chmod +x terraform
+            curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
+            ls
+            unzip tf/terraform.zip
+            chmod +x terraform
 
       # Download and cache dependencies
       - restore_cache:
