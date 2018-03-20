@@ -22,7 +22,7 @@ jobs:
           name: Running tests
           command: |
             echo "https://releases.hashicorp.com/terraform/0.11.4/terraform_0.11.4_linux_amd64.zip"
-            echo "https://releases.hashicorp.com/terraform/$(TF_VERSION)/terraform_$(TF_VERSION)_linux_amd64.zip"
+            echo "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
             curl -o terraform.zip "https://releases.hashicorp.com/terraform/0.11.4/terraform_0.11.4_linux_amd64.zip"
             unzip terraform.zip
             chmod +x terraform
