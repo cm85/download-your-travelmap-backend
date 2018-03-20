@@ -18,17 +18,13 @@ jobs:
 
     steps:
       - checkout
-      - command: |
-        echo $TF_VERSION
-        curl -o terraform.zip https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip
+      - run:
+        name: Deploy
+        command: |
+        curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
         ls
-        gunzip terraform.zip
-        chmod +x ./terraform
-        export PATH=$(pwd):$PATH
-        terraform --version
-        npm run webpack
-        npm run tf:init
-        npm run tf:apply
+        unzip tf/terraform.zip
+        chmod +x terraform
 
       # Download and cache dependencies
       - restore_cache:
