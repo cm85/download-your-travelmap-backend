@@ -21,8 +21,8 @@ jobs:
       - run:
           name: Running tests
           command: |
-            curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
-            unzip tf/terraform.zip
+            curl -o terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
+            unzip terraform.zip
             chmod +x terraform
 
       # Download and cache dependencies
