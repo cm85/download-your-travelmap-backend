@@ -19,11 +19,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Running tests
-        command: |
-          curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
-          unzip tf/terraform.zip
-          chmod +x terraform
+          name: Running tests
+          command: |
+            curl -o tf/terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_$TF_VERSION_linux_amd64.zip"
+            unzip tf/terraform.zip
+            chmod +x terraform
 
       # Download and cache dependencies
       - restore_cache:
