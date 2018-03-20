@@ -26,7 +26,6 @@ module.exports = {
     publicPath: '/',
     crossOriginLoading: 'anonymous',
   },
-  mode: 'production',
   module: {
     rules: [
       {

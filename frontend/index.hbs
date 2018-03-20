@@ -25,11 +25,19 @@
       <button class="expander" type="button"><img inline src="./frontend/svg/expand.svg"></button>
       <form action="{{htmlWebpackPlugin.options.endpoint}}">
     <fieldset>
-      <label>
+<div class="flexcontainer">
         <input placeholder="https://tripadvisor.com/..." type="url" id="url" name="url" required />
-      </label>
-      <button type="submit">submit</button>
+
+      <button class="button" type="submit">submit</button>
+</div>
     </fieldset>
+          <fieldset class="cta">
+              <p>Please enter your tripadvisor profile url</p>
+              <div class="flexcontainer">
+              <a class="button download" href="">Download<img inline src="./frontend/svg/download.svg" /></a>
+              <button class="button" type="button">Google Maps<img inline src="./frontend/svg/googlemaps.svg" /></button>
+              </div>
+          </fieldset>
   </form>
   </div>
     <div class="map">

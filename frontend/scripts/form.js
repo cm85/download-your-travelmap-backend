@@ -16,8 +16,9 @@ module.exports = () => {
   const submit = async () => {
     console.log('submit');
     try {
-      const result = await window.fetch(apiEndpoint);
-      map((await result.json()).places);
+      const result = await (await window.fetch(apiEndpoint)).json();
+      map(result.places);
+      form.querySelector('.download').setAttribute('href', result.zip);
       formWrapper.classList.add('success');
     } catch (err) {
       console.log(err);
