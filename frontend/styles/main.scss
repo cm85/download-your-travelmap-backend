@@ -131,11 +131,16 @@ body {
 
   svg {
     vertical-align: bottom;
-
   }
+  &.hide {
+  display: none;
+}
   .gmap {
     height: 500px;
     display: none;
+    &.show {
+      display: block;
+    }
   }
 }
 

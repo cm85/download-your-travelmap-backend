@@ -14,11 +14,10 @@ module.exports = () => {
   const apiEndpoint = form.getAttribute('action');
   // const apiEndpoint = 'https://15qdjxcjh3.execute-api.us-east-1.amazonaws.com/test?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller?url=http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller'
   const submit = async () => {
-    console.log('submit');
     try {
       const result = await (await window.fetch(apiEndpoint)).json();
       map(result.places);
-      form.querySelector('.download').setAttribute('href', result.zip);
+      formWrapper.querySelector('.button--download').setAttribute('href', result.zip);
       formWrapper.classList.add('success');
     } catch (err) {
       console.log(err);
