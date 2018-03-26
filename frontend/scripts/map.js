@@ -13,9 +13,6 @@ module.exports = (places) => {
     googleMapElement.classList.toggle('show');
   });
 
-
   googleMap(googleMapElement, places);
-
-
   svgMap(svgElement, places);
 };

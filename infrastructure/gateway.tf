@@ -5,6 +5,7 @@ resource "aws_api_gateway_domain_name" "api" {
 
 resource "aws_api_gateway_rest_api" "api" {
   name = "${var.name}"
+  minimum_compression_size = 3
 }
 
 resource "aws_api_gateway_method" "method" {
