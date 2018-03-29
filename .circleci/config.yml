@@ -21,7 +21,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      - run: npm test
+      - run: REGION=us-east-1 npm test
       - run:
             name: Install Terraform
             command: |
