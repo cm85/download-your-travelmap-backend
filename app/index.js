@@ -7,6 +7,7 @@ const zip = require('./zip');
 const response = require('./response');
 const sanitize = require('sanitize-filename');
 const validateUrl = require('./validateUrl');
+const email = require('./email');
 
 exports.handler = async (event, context, callback) => {
   try {
@@ -37,9 +38,10 @@ exports.handler = async (event, context, callback) => {
 
     mapData.zip = `${username}.zip`;
 
+    await email(`${username}`);
     return response(200, mapData, callback);
   } catch (error) {
-    // console.error(error); // eslint disable-line
+    console.error(error); // eslint disable-line
     return response(500, error.message, callback);
   }
 };

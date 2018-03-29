@@ -1,8 +1,10 @@
 /* eslint-disable */
 const payload = { queryStringParameters: { url: 'http%3A%2F%2Fwww.tripadvisor.com%2Fmembers%2Fchristianhaller' } };
 process.env.BUCKET = require('./infrastructure/variables.tf.json').variable[1].bucket.default;
+process.env.REGION = 'us-east-1';
 const app = require('./app/index');
 const cb = (obj, res) => {
+    console.log(res);
     console.log(JSON.parse(res.body).username);
 };
 

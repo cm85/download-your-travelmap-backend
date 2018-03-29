@@ -24,6 +24,7 @@ body {
   .cta {
     height: 3em;
     margin-top: 1em;
+
     .button {
       display: none;
     }
@@ -122,26 +123,32 @@ body {
 .wrapper {
   max-width: 90%;
   position: relative;
-  border-radius: 3px;
-  box-shadow: 0 0.1em 0.4em #b7ccde;
   margin: 0 auto;
 }
 
 .map {
+  height: 100vh;
+  text-align: center;
 
   svg {
     vertical-align: bottom;
+    width: calc(100vh * 1.8);
+
   }
-  &.hide {
-  display: none;
-}
+
   .gmap {
-    height: 500px;
-    display: none;
-    &.show {
-      display: block;
-    }
+   height: 100vh;
+    margin: 0 auto;
   }
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
+
+  }
+
+
 }
 
 @media only screen and (min-device-width: 1200px) {

@@ -5,21 +5,24 @@ module.exports = (mapElement, places) => {
   GoogleMapsLoader.load((google) => {
     const map = new google.maps.Map(mapElement, {
       center: new google.maps.LatLng(0, 0),
-      zoom: 1,
-      minZoom: 1,
     });
 
     const bounds = new google.maps.LatLngBounds();
-    places.filter(place => place.flags.includes('been')).forEach((place) => {
+    const x = places.slice(0, 3);
+    console.log(x.length);
+    x.filter(place => place.flags.includes('been')).forEach((place) => {
       const { lat, lng } = place;
-      bounds.extend(new google.maps.LatLng(lat, lng));
+      const position = new google.maps.LatLng(lat, lng);
+      bounds.extend(position);
 
       /* eslint-disable no-new */
       new google.maps.Marker({
-        position: { lat, lng },
+        position,
         map,
       });
     });
+
+    console.log(bounds);
     map.fitBounds(bounds);
   });
 };

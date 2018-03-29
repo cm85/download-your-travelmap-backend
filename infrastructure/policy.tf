@@ -12,17 +12,21 @@ data "aws_iam_policy_document" "assume" {
   }
 }
 
-data "aws_iam_policy_document" "s3" {
+data "aws_iam_policy_document" "ses" {
   statement {
-    actions   = ["s3:*"]
-    resources = ["${aws_s3_bucket.bucket.arn}/*"]
-
-    principals {
-      identifiers = ["${aws_iam_role.lambda.arn}"]
-      type        = "AWS"
-    }
-
-    sid    = "hey"
-    effect = "Allow"
+    actions   = ["ses:Send*", "logs:*", "s3:*"]
+    resources = ["*"]
+    sid       = "rrhey"
+    effect    = "Allow"
   }
+}
+
+resource "aws_iam_policy" "ses" {
+  name   = "ses"
+  policy = "${data.aws_iam_policy_document.ses.json}"
+}
+
+resource "aws_iam_role_policy_attachment" "attachement" {
+  role       = "${aws_iam_role.lambda.id}"
+  policy_arn = "${aws_iam_policy.ses.arn}"
 }
