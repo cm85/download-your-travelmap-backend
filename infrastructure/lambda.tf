@@ -10,7 +10,7 @@ resource "aws_lambda_function" "lambda" {
   function_name    = "${var.name}"
   role             = "${aws_iam_role.lambda.arn}"
   handler          = "index.handler"
-  runtime          = "nodejs6.10"
+  runtime          = "nodejs8.10"
   timeout          = 5
   memory_size      = 1024
   filename         = "${data.archive_file.lambda_zip.output_path}"
