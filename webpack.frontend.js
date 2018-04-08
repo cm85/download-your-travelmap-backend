@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SriPlugin = require('webpack-subresource-integrity');
 const WebpackSHAHash = require('webpack-sha-hash');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
@@ -11,10 +11,6 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
 const endpoint = '/local.json';
-
-const extractSass = new ExtractTextPlugin({
-  filename: '[contenthash:20].css',
-});
 
 module.exports = {
   entry: {
@@ -49,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: extractSass.extract({
+        use: ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
             options: {
@@ -97,7 +93,7 @@ module.exports = {
     }),
     new UglifyJsPlugin(),
     new WebpackSHAHash(),
-    extractSass,
+    new ExtractTextPlugin('styles.css'),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist/s3'),
