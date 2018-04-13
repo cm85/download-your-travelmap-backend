@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk-mock');
 
-process.env.BUCKET = require('../infrastructure/variables.tf.json').variable[1].bucket.default;
+process.env.BUCKET = require('../infrastructure/variables.tf.json').variable[2].download.default;
 
 let app;
 
