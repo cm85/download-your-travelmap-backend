@@ -18,7 +18,7 @@ resource "aws_lambda_function" "lambda" {
 
   environment {
     variables = {
-      BUCKET = "${aws_s3_bucket.bucket.bucket}"
+      BUCKET = "${aws_s3_bucket.download.bucket}"
       REGION = "${var.region}"
     }
   }

@@ -1,11 +1,17 @@
-resource "aws_s3_bucket" "bucket" {
-  bucket        = "${var.bucket}"
+resource "aws_s3_bucket" "frontend" {
+  bucket        = "${var.web}"
   acl           = "private"
   force_destroy = true
 }
 
-resource "aws_s3_bucket_policy" "bucket" {
-  bucket = "${aws_s3_bucket.bucket.id}"
+resource "aws_s3_bucket" "download" {
+  bucket        = "${var.download}"
+  acl           = "private"
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_policy" "download" {
+  bucket = "${aws_s3_bucket.download.id}"
   policy = "${data.aws_iam_policy_document.s3.json}"
 }
 
@@ -13,7 +19,7 @@ resource "aws_s3_bucket_policy" "bucket" {
 data "aws_iam_policy_document" "s3" {
   statement {
     actions   = ["s3:putObject"]
-    resources = ["${aws_s3_bucket.bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.download.arn}/*"]
 
     principals {
       identifiers = ["${aws_iam_role.lambda.arn}"]

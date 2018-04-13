@@ -6,8 +6,13 @@
       }
     },
     {
-      "bucket": {
+      "web": {
         "default": "bucket-download-your-travelmap-reloaded"
+      }
+    },
+    {
+      "download": {
+        "default": "dl-download-your-travelmap-reloaded"
       }
     },
     {
