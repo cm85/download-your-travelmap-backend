@@ -5,7 +5,7 @@ module.exports = {
     'babel-polyfill',
     './app/index.js',
   ],
-  mode: 'production',
+  mode: 'development',
   target: 'node',
   output: {
     libraryTarget: 'commonjs',

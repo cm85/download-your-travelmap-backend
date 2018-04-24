@@ -32,6 +32,6 @@ jobs:
                   terraform --version
                   npm run webpack
                   npm run tf:init
-                  npm run tf:apply
+                  TF_VAR_commitdid=CIRCLE_SHA1 TF_VAR_version=CIRCLE_BUILD_NUM npm run tf:apply
                   npm run frontend
 

@@ -23,3 +23,10 @@ resource "aws_lambda_function" "lambda" {
     }
   }
 }
+
+resource "aws_lambda_alias" "test_alias" {
+  name             = "${var.commitid}"
+  description      = "a sample description"
+  function_name    = "${aws_lambda_function.lambda.arn}"
+  function_version = "$LATEST"
+}
