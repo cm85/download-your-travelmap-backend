@@ -15,7 +15,6 @@ resource "aws_lambda_function" "lambda" {
   memory_size      = 1024
   filename         = "${data.archive_file.lambda_zip.output_path}"
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
-  version           = "${var.version}"
 
   environment {
     variables = {
@@ -27,7 +26,7 @@ resource "aws_lambda_function" "lambda" {
 
 resource "aws_lambda_alias" "test_alias" {
   name             = "${var.commitid}"
-  description      = "a sample description"
+  description      = "${var.version}"
   function_name    = "${aws_lambda_function.lambda.arn}"
-  function_version = "${var.version}"
+  function_version = "$LATEST"
 }
