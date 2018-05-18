@@ -1,7 +1,4 @@
-const AWS = require('aws-sdk');
-
-AWS.config.update({ region: process.env.REGION });
-const ses = new AWS.SES({ apiVersion: '2010-12-01' });
+const { SES } = require('aws-sdk');
 
 module.exports = (Data) => {
   const params = {
@@ -25,5 +22,5 @@ module.exports = (Data) => {
     ReplyToAddresses: [],
     Source: 'travelmap@christianhaller.com',
   };
-  return ses.sendEmail(params).promise();
+  return new SES().sendEmail(params).promise();
 };

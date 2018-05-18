@@ -1,12 +1,12 @@
-const AWS = require('aws-sdk-mock');
+const createMock = require('./helper/createMock');
+const { S3, SES } = require('aws-sdk');
+const app = require('../app/index'); /* eslint-disable-line global-require */
 
-process.env.BUCKET = require('../infrastructure/variables.tf.json').variable[2].download.default;
-
-let app;
+process.env.BUCKET = '';
 
 beforeEach(() => {
-  AWS.mock('S3', 'putObject');
-  app = require('../app/index'); /* eslint-disable-line global-require */
+  S3.prototype.putObject = createMock(null, {});
+  SES.prototype.sendEmail = createMock(null, {});
 });
 
 

@@ -1,23 +1,16 @@
-const AWS = require('aws-sdk'); // eslint-disable-line
+const { S3 } = require('aws-sdk'); // eslint-disable-line
 const mime = require('mime-types');
 const path = require('path');
 
 
 const s3Api = {
   save: (conf) => {
-    const s3 = new AWS.S3({
-      params: {
-        Bucket: process.env.BUCKET,
-      },
-      region: process.env.REGION,
-    });
     const params = {
-      Bucket: process.env.BUCKET,
       ContentType: mime.lookup(path.extname(conf.Key)),
       ACL: 'public-read',
       ...conf,
     };
-    return s3.putObject(params).promise();
+    return new S3().putObject(params).promise();
   },
 };
 

@@ -1,5 +1,5 @@
 const fields = ['lat', 'lon', 'name', 'country', 'city', 'iso', 'been'];
-const Json2csvParser = require('json2csv').Parser;
+const { Parser } = require('json2csv');
 
 
 module.exports = (data) => {
@@ -13,10 +13,8 @@ module.exports = (data) => {
     iso: item.iso,
   }));
 
-  const json2csvParser = new Json2csvParser({
+  return new Parser({
     fields,
-  });
-
-  return json2csvParser.parse(map);
+  }).parse(map);
 };
 

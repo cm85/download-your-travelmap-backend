@@ -32,6 +32,7 @@ exports.handler = async (event, context, callback) => {
 
     // save to s3
     await save({
+      Bucket: process.env.BUCKET,
       Key: `${username}.zip`,
       Body: zipFile,
     });

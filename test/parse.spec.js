@@ -1,7 +1,6 @@
 const fs = require('fs');
 const parse = require('../app/parse');
 
-
 const html = fs.readFileSync(`${__dirname}/fixtures/travelmap.html`, 'utf8');
 const profile = fs.readFileSync(`${__dirname}/fixtures/profile.html`, 'utf8');
 const empty = fs.readFileSync(`${__dirname}/fixtures/empty.html`, 'utf8');
